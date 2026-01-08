@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct awesome_notchApp: App {
+    init() {
+            DispatchQueue.main.async {
+                NotchWindowController.shared.show()
+            }
+        }
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        Settings {
+            EmptyView()
         }
     }
 }
