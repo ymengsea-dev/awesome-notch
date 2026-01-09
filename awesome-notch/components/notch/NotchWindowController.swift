@@ -1,48 +1,6 @@
 import SwiftUI
 import AppKit
 
-// Custom view for mouse tracking
-class TrackingView: NSView {
-    var onMouseEntered: (() -> Void)?
-    var onMouseExited: (() -> Void)?
-    private var trackingArea: NSTrackingArea?
-    var collapsedNotchRect: CGRect = .zero {
-        didSet {
-            updateTrackingAreas()
-        }
-    }
-    var isExpanded: Bool = false {
-        didSet {
-            updateTrackingAreas()
-        }
-    }
-    
-    override func updateTrackingAreas() {
-        super.updateTrackingAreas()
-        
-        if let trackingArea = trackingArea {
-            removeTrackingArea(trackingArea)
-        }
-        
-        // When expanded: track the entire expanded area so we can detect when mouse leaves
-        let trackingRect = (isExpanded || collapsedNotchRect.isEmpty) ? bounds : collapsedNotchRect
-        let options: NSTrackingArea.Options = [.activeAlways, .mouseEnteredAndExited]
-        trackingArea = NSTrackingArea(rect: trackingRect, options: options, owner: self, userInfo: nil)
-        addTrackingArea(trackingArea!)
-    }
-    
-    override func mouseEntered(with event: NSEvent) {
-        // Only trigger expansion when hovering over collapsed notch area
-        if !isExpanded {
-            onMouseEntered?()
-        }
-    }
-    
-    override func mouseExited(with event: NSEvent) {
-        onMouseExited?()
-    }
-}
-
 final class NotchWindowController {
     
     static let shared = NotchWindowController()
@@ -88,8 +46,8 @@ final class NotchWindowController {
         
         // Use actual notch width if available, otherwise fallback to 180
         let collapsedHeight: CGFloat = notchSize?.height ?? 42
-        let expandedWidth: CGFloat = 320.0 // width of notch when it expanded
-        let expandedHeight: CGFloat = 120 // height of notch when it expanded
+        let expandedWidth: CGFloat = 450.0 // width of notch when it expanded
+        let expandedHeight: CGFloat = 140 // height of notch when it expanded
         
         // Always use expanded size for window frame to prevent mouse tracking issues
         let x = (screenFrame.width - expandedWidth) / 2
@@ -102,7 +60,11 @@ final class NotchWindowController {
             height: expandedHeight
         )
         
-        let hostingView = NSHostingView(rootView: NotchView())
+        // You can customize the content here - pass any SwiftUI view!
+        let hostingView = NSHostingView(rootView: NotchView {
+            // Example: Simple text content
+            NotchTabs()
+        })
         
         // Create tracking view wrapper matching window size
         let trackingView = TrackingView(frame: NSRect(x: 0, y: 0, width: expandedWidth, height: expandedHeight))
@@ -269,8 +231,8 @@ final class NotchWindowController {
         let screenFrame = screen.frame
 
         let collapsedHeight = notchSize?.height ?? 42
-        let expandedWidth = 320.0
-        let expandedHeight: CGFloat = 120
+        let expandedWidth = 450.0
+        let expandedHeight: CGFloat = 140
         
         // Window always stays at expanded size, we just animate the visual content
         // This prevents mouse tracking issues
@@ -293,23 +255,25 @@ final class NotchWindowController {
             self.isAnimating = false
         })
     }
-}
-
-
-// get notch dimainsion
-extension NSScreen {
-    var notchSize: CGSize? {
-        guard #available(macOS 12, *) else {
-            return nil
-        }
-        if safeAreaInsets.top != 0 {
-            if let leftArea = auxiliaryTopLeftArea, let rightArea = auxiliaryTopRightArea {
-                let totalWidth = frame.width
-                let notchWidth = totalWidth - (leftArea.width + rightArea.width)
-                let notchHeight = safeAreaInsets.top
-                return CGSize(width: notchWidth, height: notchHeight)
+    
+    // create setting window
+    func showSettingsWindow(){
+        NSApplication.shared.activate(ignoringOtherApps: true)
+        if let window = NSApp.windows.first(where: { $0.identifier?.rawValue == "SettingsWindow" }) {
+                window.makeKeyAndOrderFront(nil)
+                return
             }
-        }
-        return nil
+        let window = NSWindow(
+                contentRect: NSRect(x: 0, y: 0, width: 400, height: 300),
+                styleMask: [.titled, .closable],
+                backing: .buffered,
+                defer: false
+            )
+        window.identifier = NSUserInterfaceItemIdentifier("SettingsWindow")
+        window.isReleasedWhenClosed = false
+        window.center()
+        window.contentView = NSHostingView(rootView: SettingsView())
+        window.makeKeyAndOrderFront(nil)
     }
+    
 }
