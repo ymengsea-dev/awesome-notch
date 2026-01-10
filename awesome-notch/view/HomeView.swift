@@ -1,9 +1,12 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     @StateObject var nowPlaying = MusicManager()
+    
     var body: some View {
-        HStack(spacing: 10){
+        HStack(spacing: 25){
+            // music artwork
             if let image = nowPlaying.artwork {
                 Image(nsImage: image)
                     .resizable()
@@ -11,10 +14,15 @@ struct HomeView: View {
                     .frame(width: 70, height: 70)
                     .cornerRadius(12)
             } else {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.gray.opacity(0.3))
+                Image("apple_music")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 70, height: 70)
             }
+            
+            // music info and controller
             VStack(alignment: .leading) {
+                // music text
                 Text(nowPlaying.title)
                     .font(.headline)
                     .lineLimit(1)
@@ -22,6 +30,8 @@ struct HomeView: View {
                 Text(nowPlaying.artist)
                     .font(.subheadline)
                     .foregroundStyle(.white)
+                
+                // button controler
                 HStack(spacing: 20) {
                     Button(action: { nowPlaying.sendCommand(.previousTrack) }) {
                         Image(systemName: "backward.fill")
@@ -29,12 +39,16 @@ struct HomeView: View {
                             .foregroundStyle(.white)
                     }.buttonStyle(.plain)
 
-                    Button(action: { nowPlaying.sendCommand(.togglePlayPause) })
-                    {
-                        Image(systemName: nowPlaying.isPlaying ?  "play.fill" : "pause.fill")
+                    Button(action: {
+                        nowPlaying.sendCommand(.togglePlayPause)
+                        nowPlaying.isPlaying.toggle()
+                    }) {
+                        Image(systemName: nowPlaying.isPlaying ? "pause.fill" : "play.fill")
                             .font(.title)
+                            .frame(width: 30)
                             .foregroundStyle(.white)
-                    }.buttonStyle(.plain)
+                    }
+                    .buttonStyle(.plain)
 
                     Button(action: { nowPlaying.sendCommand(.nextTrack) }) {
                         Image(systemName: "forward.fill")
