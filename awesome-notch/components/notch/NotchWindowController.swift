@@ -44,8 +44,7 @@ final class NotchWindowController {
         let safeInserts  = screen.safeAreaInsets
         let screenFrame = screen.frame
         
-        // Use actual notch width if available, otherwise fallback to 180
-        let collapsedHeight: CGFloat = notchSize?.height ?? 42
+        let collapsedHeight: CGFloat = (notchSize?.height ?? 42)
         let expandedWidth: CGFloat = 450.0 // width of notch when it expanded
         let expandedHeight: CGFloat = 140 // height of notch when it expanded
         
@@ -230,7 +229,8 @@ final class NotchWindowController {
         let safeInsets = screen.safeAreaInsets
         let screenFrame = screen.frame
 
-        let collapsedHeight = notchSize?.height ?? 42
+        // Add extra height to extend below physical notch for displaying content
+        let collapsedHeight = (notchSize?.height ?? 42)
         let expandedWidth = 450.0
         let expandedHeight: CGFloat = 140
         

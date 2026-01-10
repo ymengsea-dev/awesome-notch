@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @StateObject var nowPlaying = MusicManager()
+    @StateObject var nowPlaying = MusicManager.shared
     
     var body: some View {
         HStack(spacing: 25){

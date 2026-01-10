@@ -11,6 +11,8 @@ enum MediaCommand: UInt32 {
 }
 
 final class MusicManager: ObservableObject {
+    
+    static let shared = MusicManager()
 
     @Published var title: String = "Not Playing"
     @Published var artist: String = ""
