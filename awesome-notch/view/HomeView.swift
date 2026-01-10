@@ -13,11 +13,14 @@ struct HomeView: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 70, height: 70)
                     .cornerRadius(12)
+                    .transition(.opacity.animation(.easeInOut(duration: 0.3)))
             } else {
                 Image("apple_music")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 70, height: 70)
+                    .transition(.opacity.animation(.easeInOut(duration: 0.3)))
+                    .animation(.easeInOut(duration: 0.4), value: nowPlaying.artwork)
             }
             
             // music info and controller
