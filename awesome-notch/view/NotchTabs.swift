@@ -6,32 +6,33 @@ enum Tab {
 }
 
 struct NotchTabs: View {
-    @State private var selectedTab: Tab = .home
+//    @State private var selectedTab: Tab = .home
+    @ObservedObject var tabManager = TabManager.share
     var body: some View {
         NavigationStack{
             HStack{
                 HStack{
                     // home tab
                     Button{
-                        selectedTab = Tab.home
+                        tabManager.selectedTab = Tab.home
                     }label: {
                         Image(systemName: "house.fill")
                             .foregroundStyle(.white)
                             .frame(width: 35, height: 20)
                             .background(
-                                selectedTab == .home ? .gray.opacity(0.5) : .clear
+                                tabManager.selectedTab == .home ? .gray.opacity(0.5) : .clear
                             )
                             .cornerRadius(10)
                     }
                     .buttonStyle(.plain)
                     // file tab
                     Button{
-                        selectedTab = Tab.file
+                        tabManager.selectedTab = Tab.file
                     }label: {
                         Image(systemName: "tray")
                             .foregroundStyle(.white)
                             .frame(width: 35, height: 20)
-                            .background(selectedTab == .file ? .gray.opacity(0.5) : .clear)
+                            .background(tabManager.selectedTab == .file ? .gray.opacity(0.5) : .clear)
                             .cornerRadius(10)
                     }
                     .buttonStyle(.plain)
@@ -57,7 +58,7 @@ struct NotchTabs: View {
                 )
             }
             VStack{
-                switch selectedTab {
+                switch tabManager.selectedTab {
                 case .home:
                     HomeView()
                 case .file:

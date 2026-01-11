@@ -10,13 +10,43 @@ final class NotchWindowController {
     private var notchSize: CGSize?
     private var isAnimating = false
     private var mouseCheckTimer: Timer?
+    private var dragMonitor: Any?
+    
+    @ObservedObject var tabManager = TabManager.share
     
     func show() {
         if window == nil {
             createWindow()
+            startDragMonitor()
         }
         window?.makeKeyAndOrderFront(nil)
     }
+    
+    private func startDragMonitor() {
+            // monitors the mouse even when it's NOT over your window
+            dragMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDragged]) { [weak self] event in
+                self?.handleGlobalDrag()
+            }
+        }
+    
+    private func handleGlobalDrag() {
+            let pasteboard = NSPasteboard(name: .drag)
+            
+            // Check if what is being dragged is actually a file
+            if pasteboard.canReadObject(forClasses: [NSURL.self], options: nil) {
+                let mouseLocation = NSEvent.mouseLocation
+                guard self.window != nil else { return }
+                
+                // If the mouse is close to the top of the screen where the notch is
+                if mouseLocation.y > (NSScreen.main?.frame.height ?? 0) - 100 {
+                    if !(trackingView?.isExpanded ?? false) {
+                        self.setExpanded(true)
+                        tabManager.selectedTab = .file
+                        NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: true)
+                    }
+                }
+            }
+        }
     
     func hide(){
         stopMouseCheckTimer()
@@ -111,6 +141,7 @@ final class NotchWindowController {
         window.isOpaque = false
         window.backgroundColor = .clear
         window.hasShadow = false
+        window.registerForDraggedTypes([.fileURL])
 
         window.level = .statusBar
         window.collectionBehavior = [
