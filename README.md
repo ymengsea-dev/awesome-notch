@@ -11,7 +11,7 @@ A macOS application that transforms your MacBook's notch into an interactive con
 - **Music Control Feature** - Fully implemented and functional
   - Real-time music playback information display
   - Play/Pause, Next Track, Previous Track controls
-  - Album artwork display
+  - artwork display
   - Audio spectrum visualization
   - Integration with macOS MediaRemote framework
   - Support for all major music apps (Apple Music, Spotify, etc.)
@@ -20,7 +20,6 @@ A macOS application that transforms your MacBook's notch into an interactive con
 
 - File management view (placeholder implemented)
 - Settings panel (basic structure in place)
-- Additional system controls and widgets
 
 ## 🎯 Features
 
@@ -157,11 +156,8 @@ Access settings by clicking the gear icon in the expanded notch interface. (Sett
 The following features are planned for future releases:
 
 - **File Management**: Quick file access and management from the notch
-- **System Controls**: Volume, brightness, and other system controls
-- **Notifications**: Notification center integration
-- **Widgets**: Customizable widgets for various system information
-- **Themes**: Customizable appearance and themes
-- **Keyboard Shortcuts**: Global keyboard shortcuts for quick access
+- **Mirror Camera**: Open webcam for preview before you video call
+- **Unknow**: Comming soon!
 
 ## 🛠️ Development
 
@@ -194,13 +190,10 @@ The following features are planned for future releases:
 
 This project is in active development. New features and improvements are welcome!
 
-## 📄 License
-
-[Add your license information here]
 
 ## 👤 Author
 
-Created by MacBook
+Created by **Y MENGSEA**
 
 ---
 

@@ -1,5 +1,4 @@
 import SwiftUI
-import Combine
 
 struct AudioSpectrum: View {
     let isPlaying: Bool
@@ -73,10 +72,8 @@ struct AudioSpectrum: View {
                 let baseHeight: CGFloat
                 if index < 2 {
                     baseHeight = CGFloat.random(in: maxHeight * 0.6...maxHeight)
-                } else if index < 5 {
-                    baseHeight = CGFloat.random(in: maxHeight * 0.3...maxHeight * 0.8)
                 } else {
-                    baseHeight = CGFloat.random(in: minHeight...maxHeight * 0.6)
+                    baseHeight = CGFloat.random(in: maxHeight * 0.3...maxHeight * 0.8)
                 }
                 return max(minHeight, min(maxHeight, baseHeight))
             }

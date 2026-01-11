@@ -41,9 +41,9 @@ struct NotchTabs: View {
                     alignment: .topLeading
                 )
                 HStack{
-                    // home tab
+                    // settings button
                     Button{
-                        NotchWindowController().showSettingsWindow()
+                        NotchWindowController.shared.showSettingsWindow()
                     }label: {
                         Image(systemName: "gear")
                             .foregroundStyle(.white)

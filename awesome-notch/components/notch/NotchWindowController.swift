@@ -9,7 +9,6 @@ final class NotchWindowController {
     private var trackingView: TrackingView?
     private var notchSize: CGSize?
     private var isAnimating = false
-    private var hoverDebounceTimer: Timer?
     private var mouseCheckTimer: Timer?
     
     func show() {
@@ -21,14 +20,11 @@ final class NotchWindowController {
     
     func hide(){
         stopMouseCheckTimer()
-        hoverDebounceTimer?.invalidate()
-        hoverDebounceTimer = nil
         window?.orderOut(nil)
     }
     
     deinit {
         stopMouseCheckTimer()
-        hoverDebounceTimer?.invalidate()
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -41,7 +37,6 @@ final class NotchWindowController {
             notchSize = screen.notchSize
         }
         
-        let safeInserts  = screen.safeAreaInsets
         let screenFrame = screen.frame
         
         let collapsedHeight: CGFloat = (notchSize?.height ?? 42)
@@ -50,7 +45,7 @@ final class NotchWindowController {
         
         // Always use expanded size for window frame to prevent mouse tracking issues
         let x = (screenFrame.width - expandedWidth) / 2
-        let y = screenFrame.height - safeInserts.top + 6 - (expandedHeight - collapsedHeight)
+        let y = screenFrame.height - screen.safeAreaInsets.top + 6 - (expandedHeight - collapsedHeight)
                  
         let frame = NSRect(
             x: x,
@@ -59,9 +54,7 @@ final class NotchWindowController {
             height: expandedHeight
         )
         
-        // You can customize the content here - pass any SwiftUI view!
         let hostingView = NSHostingView(rootView: NotchView {
-            // Example: Simple text content
             NotchTabs()
         })
         
@@ -203,11 +196,7 @@ final class NotchWindowController {
         mouseCheckTimer = nil
     }
     
-    // set expanding
     func setExpanded(_ expanded: Bool){
-        // Cancel any pending debounce timer
-        hoverDebounceTimer?.invalidate()
-        
         // Ignore if already animating
         guard !isAnimating, let window, let screen = NSScreen.main else { return }
         
@@ -256,7 +245,6 @@ final class NotchWindowController {
         })
     }
     
-    // create setting window
     func showSettingsWindow(){
         NSApplication.shared.activate(ignoringOtherApps: true)
         if let window = NSApp.windows.first(where: { $0.identifier?.rawValue == "SettingsWindow" }) {

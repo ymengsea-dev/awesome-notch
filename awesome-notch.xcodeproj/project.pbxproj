@@ -6,30 +6,41 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FA9DFF112F134DBD00CAAC8C /* awesome_notchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF092F134DBD00CAAC8C /* awesome_notchApp.swift */; };
+		FA9DFF132F134DBD00CAAC8C /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFEF72F134DBD00CAAC8C /* MusicManager.swift */; };
+		FA9DFF142F134DBD00CAAC8C /* AudioSpectrum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFEF62F134DBD00CAAC8C /* AudioSpectrum.swift */; };
+		FA9DFF152F134DBD00CAAC8C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF052F134DBD00CAAC8C /* HomeView.swift */; };
+		FA9DFF162F134DBD00CAAC8C /* NotchTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF062F134DBD00CAAC8C /* NotchTabs.swift */; };
+		FA9DFF172F134DBD00CAAC8C /* TrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF022F134DBD00CAAC8C /* TrackingView.swift */; };
+		FA9DFF182F134DBD00CAAC8C /* GetNotchDimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF012F134DBD00CAAC8C /* GetNotchDimension.swift */; };
+		FA9DFF192F134DBD00CAAC8C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF072F134DBD00CAAC8C /* SettingsView.swift */; };
+		FA9DFF1B2F134DBD00CAAC8C /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFEFB2F134DBD00CAAC8C /* NotchView.swift */; };
+		FA9DFF1C2F134DBD00CAAC8C /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFEFA2F134DBD00CAAC8C /* NotchShape.swift */; };
+		FA9DFF1D2F134DBD00CAAC8C /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF042F134DBD00CAAC8C /* FileView.swift */; };
+		FA9DFF1E2F134DBD00CAAC8C /* NotchWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFEFC2F134DBD00CAAC8C /* NotchWindowController.swift */; };
+		FA9DFF1F2F134DBD00CAAC8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA9DFEFF2F134DBD00CAAC8C /* Assets.xcassets */; };
+		FA9DFF202F134DBD00CAAC8C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FA9DFF0E2F134DBD00CAAC8C /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FA5455B92F0F968E00531A45 /* awesome-notch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "awesome-notch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA9DFEF62F134DBD00CAAC8C /* AudioSpectrum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpectrum.swift; sourceTree = "<group>"; };
+		FA9DFEF72F134DBD00CAAC8C /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
+		FA9DFEFA2F134DBD00CAAC8C /* NotchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShape.swift; sourceTree = "<group>"; };
+		FA9DFEFB2F134DBD00CAAC8C /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
+		FA9DFEFC2F134DBD00CAAC8C /* NotchWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchWindowController.swift; sourceTree = "<group>"; };
+		FA9DFEFF2F134DBD00CAAC8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA9DFF012F134DBD00CAAC8C /* GetNotchDimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNotchDimension.swift; sourceTree = "<group>"; };
+		FA9DFF022F134DBD00CAAC8C /* TrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingView.swift; sourceTree = "<group>"; };
+		FA9DFF042F134DBD00CAAC8C /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
+		FA9DFF052F134DBD00CAAC8C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FA9DFF062F134DBD00CAAC8C /* NotchTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchTabs.swift; sourceTree = "<group>"; };
+		FA9DFF072F134DBD00CAAC8C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FA9DFF092F134DBD00CAAC8C /* awesome_notchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = awesome_notchApp.swift; sourceTree = "<group>"; };
+		FA9DFF0D2F134DBD00CAAC8C /* awesome-notch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "awesome-notch.xcodeproj"; sourceTree = "<group>"; };
+		FA9DFF0E2F134DBD00CAAC8C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		FA5455C82F0FA21600531A45 /* Exceptions for "awesome-notch" folder in "awesome-notch" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = FA5455B82F0F968E00531A45 /* awesome-notch */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		FA5455BB2F0F968E00531A45 /* awesome-notch */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				FA5455C82F0FA21600531A45 /* Exceptions for "awesome-notch" folder in "awesome-notch" target */,
-			);
-			path = "awesome-notch";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FA5455B62F0F968E00531A45 /* Frameworks */ = {
@@ -45,7 +56,9 @@
 		FA5455B02F0F968E00531A45 = {
 			isa = PBXGroup;
 			children = (
-				FA5455BB2F0F968E00531A45 /* awesome-notch */,
+				FA9DFF0C2F134DBD00CAAC8C /* awesome-notch */,
+				FA9DFF0D2F134DBD00CAAC8C /* awesome-notch.xcodeproj */,
+				FA9DFF0E2F134DBD00CAAC8C /* README.md */,
 				FA5455BA2F0F968E00531A45 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +68,87 @@
 			children = (
 				FA5455B92F0F968E00531A45 /* awesome-notch.app */,
 			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA9DFEF52F134DBD00CAAC8C /* build */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = build;
+			sourceTree = "<group>";
+		};
+		FA9DFEF92F134DBD00CAAC8C /* mediaContol */ = {
+			isa = PBXGroup;
+			children = (
+				FA9DFEF62F134DBD00CAAC8C /* AudioSpectrum.swift */,
+				FA9DFEF72F134DBD00CAAC8C /* MusicManager.swift */,
+			);
+			path = mediaContol;
+			sourceTree = "<group>";
+		};
+		FA9DFEFD2F134DBD00CAAC8C /* notch */ = {
+			isa = PBXGroup;
+			children = (
+				FA9DFEFA2F134DBD00CAAC8C /* NotchShape.swift */,
+				FA9DFEFB2F134DBD00CAAC8C /* NotchView.swift */,
+				FA9DFEFC2F134DBD00CAAC8C /* NotchWindowController.swift */,
+			);
+			path = notch;
+			sourceTree = "<group>";
+		};
+		FA9DFEFE2F134DBD00CAAC8C /* components */ = {
+			isa = PBXGroup;
+			children = (
+				FA9DFEF92F134DBD00CAAC8C /* mediaContol */,
+				FA9DFEFD2F134DBD00CAAC8C /* notch */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		FA9DFF002F134DBD00CAAC8C /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				FA9DFEFF2F134DBD00CAAC8C /* Assets.xcassets */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
+		FA9DFF032F134DBD00CAAC8C /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				FA9DFF012F134DBD00CAAC8C /* GetNotchDimension.swift */,
+				FA9DFF022F134DBD00CAAC8C /* TrackingView.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		FA9DFF082F134DBD00CAAC8C /* view */ = {
+			isa = PBXGroup;
+			children = (
+				FA9DFF042F134DBD00CAAC8C /* FileView.swift */,
+				FA9DFF052F134DBD00CAAC8C /* HomeView.swift */,
+				FA9DFF062F134DBD00CAAC8C /* NotchTabs.swift */,
+				FA9DFF072F134DBD00CAAC8C /* SettingsView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		FA9DFF0C2F134DBD00CAAC8C /* awesome-notch */ = {
+			isa = PBXGroup;
+			children = (
+				FA9DFEF52F134DBD00CAAC8C /* build */,
+				FA9DFEFE2F134DBD00CAAC8C /* components */,
+				FA9DFF002F134DBD00CAAC8C /* resource */,
+				FA9DFF032F134DBD00CAAC8C /* utils */,
+				FA9DFF082F134DBD00CAAC8C /* view */,
+				FA9DFF092F134DBD00CAAC8C /* awesome_notchApp.swift */,
+			);
+			path = "awesome-notch";
+			sourceTree = "<group>";
+		};
+		FA9DFF0F2F134DBD00CAAC8C /* Products */ = {
+			isa = PBXGroup;
 			name = Products;
 			sourceTree = "<group>";
 		};
@@ -72,9 +166,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				FA5455BB2F0F968E00531A45 /* awesome-notch */,
 			);
 			name = "awesome-notch";
 			packageProductDependencies = (
@@ -110,6 +201,12 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FA5455BA2F0F968E00531A45 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FA9DFF0F2F134DBD00CAAC8C /* Products */;
+					ProjectRef = FA9DFF0D2F134DBD00CAAC8C /* awesome-notch.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FA5455B82F0F968E00531A45 /* awesome-notch */,
@@ -122,6 +219,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9DFF1F2F134DBD00CAAC8C /* Assets.xcassets in Resources */,
+				FA9DFF202F134DBD00CAAC8C /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +231,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9DFF112F134DBD00CAAC8C /* awesome_notchApp.swift in Sources */,
+				FA9DFF132F134DBD00CAAC8C /* MusicManager.swift in Sources */,
+				FA9DFF142F134DBD00CAAC8C /* AudioSpectrum.swift in Sources */,
+				FA9DFF152F134DBD00CAAC8C /* HomeView.swift in Sources */,
+				FA9DFF162F134DBD00CAAC8C /* NotchTabs.swift in Sources */,
+				FA9DFF172F134DBD00CAAC8C /* TrackingView.swift in Sources */,
+				FA9DFF182F134DBD00CAAC8C /* GetNotchDimension.swift in Sources */,
+				FA9DFF192F134DBD00CAAC8C /* SettingsView.swift in Sources */,
+				FA9DFF1B2F134DBD00CAAC8C /* NotchView.swift in Sources */,
+				FA9DFF1C2F134DBD00CAAC8C /* NotchShape.swift in Sources */,
+				FA9DFF1D2F134DBD00CAAC8C /* FileView.swift in Sources */,
+				FA9DFF1E2F134DBD00CAAC8C /* NotchWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,10 +378,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TPNLG43MX4;
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "awesome-notch/Info.plist";
 				INFOPLIST_KEY_LSUIElement = YES;
@@ -280,7 +390,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mengsea.awesome-notch";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.ControlCenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -301,10 +411,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TPNLG43MX4;
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "awesome-notch/Info.plist";
 				INFOPLIST_KEY_LSUIElement = YES;
@@ -314,7 +423,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mengsea.awesome-notch";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.ControlCenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
