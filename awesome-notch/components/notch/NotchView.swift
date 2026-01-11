@@ -27,6 +27,7 @@ struct NotchView<Content: View>: View {
             width: expanded ? nil : collapsedWidth,
             height: expanded ? nil : collapsedHeight
         )
+        .animation(.bouncy(duration: 0.2), value: collapsedWidth)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .overlay(alignment: .topLeading) {
             // Expanded content
@@ -81,7 +82,9 @@ struct NotchView<Content: View>: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("NotchExpanded"))) { notification in
             if let isExpanded = notification.object as? Bool {
-                withAnimation(.easeInOut(duration: 0.3)) {
+                withAnimation(
+                    isExpanded ? .bouncy(duration: 0.2): .easeInOut(duration: 0.2)
+                ) {
                     expanded = isExpanded
                 }
             }
