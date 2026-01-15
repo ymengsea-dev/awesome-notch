@@ -3,30 +3,64 @@ import UniformTypeIdentifiers
 import AppKit
 
 struct NotchShelfView: View {
-    @ObservedObject var shelfManager = ShelfManager.shared
+    @StateObject var shelfManager = ShelfManager.shared
     @State var isDraggingOver = false
     
     var body: some View {
         HStack{
             if(shelfManager.items.isEmpty){
-                Text("drop file over here")
-                    .foregroundStyle(.white)
-                    .padding()
-                    .background(.gray)
+                VStack(spacing: 5){
+                    Image(systemName: "tray.and.arrow.down.fill")
+                        .font(.title3)
+                        .foregroundStyle(.gray)
+                    Text("Drop file here")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.gray)
+                }
+                .padding(.horizontal, 30)
+                .padding(.vertical, 14)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(style: StrokeStyle(
+                            lineWidth: 3,
+                            dash: [10,5]
+                        ))
+                        .foregroundStyle(isDraggingOver ? .blue : .gray)
+                }
             }else {
-                ForEach(shelfManager.items) { item in
-                    Image(nsImage: item.icon)
-                        .onDrag {
-                            NSItemProvider(object: item.url as NSURL)
-                        }
-                        .overlay(alignment: .topTrailing) {
-                            Button{
-                                shelfManager.remove(item)
-                            }label: {
-                                Image(systemName: "xmark.circle")
-                                    .foregroundStyle(.white)
+                HStack{
+                    ForEach(shelfManager.items) { item in
+                        Image(nsImage: item.icon)
+                            .resizable()
+                            .scaledToFit()
+                            .onDrag {
+                                NSItemProvider(object: item.url as NSURL)
                             }
-                        }
+                            .overlay(alignment: .topTrailing) {
+                                HStack{
+                                    Button{
+                                        shelfManager.remove(item)
+                                    }label: {
+                                        Image(systemName: "xmark.circle")
+                                            .foregroundStyle(.white)
+                                            .padding(3)
+                                    }
+                                    .buttonStyle(.plain)
+                                }
+                                .position(x: 40, y: 0)
+                            }
+                    }
+                }
+                .padding(.horizontal, 30)
+                .padding(.vertical, 14)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(style: StrokeStyle(
+                            lineWidth: 3,
+                            dash: [10,5]
+                        ))
+                        .foregroundStyle(isDraggingOver ? .blue : .gray)
                 }
             }
         }
@@ -37,4 +71,8 @@ struct NotchShelfView: View {
             return true
         }
     }
+}
+
+#Preview {
+    NotchShelfView()
 }

@@ -7,6 +7,7 @@ final class ShelfManager: ObservableObject{
     
     @Published var items: [ShelfItem] = []
     
+    // handle drop file
     func handleDrop(providers: [NSItemProvider]){
         for provider in providers{
             // get file url from provider
@@ -23,6 +24,7 @@ final class ShelfManager: ObservableObject{
         }
     }
     
+    // remove file from container
     func remove( _ item: ShelfItem){
         items.removeAll{ $0.id == item.id }
     }

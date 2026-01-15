@@ -38,10 +38,12 @@ final class NotchWindowController {
                 guard self.window != nil else { return }
                 
                 // If the mouse is close to the top of the screen where the notch is
-                if mouseLocation.y > (NSScreen.main?.frame.height ?? 0) - 100 {
+                if mouseLocation.y > (NSScreen.main?.frame.height ?? 0) - 20 {
+                    // Always switch to file tab when dragging a file
+                    tabManager.selectedTab = .file
+                    
                     if !(trackingView?.isExpanded ?? false) {
                         self.setExpanded(true)
-                        tabManager.selectedTab = .file
                         NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: true)
                     }
                 }
@@ -57,7 +59,7 @@ final class NotchWindowController {
         stopMouseCheckTimer()
         NotificationCenter.default.removeObserver(self)
     }
-    
+     
     // create floating window for notch
     private func createWindow(){
         guard let screen = NSScreen.main else {return}
@@ -194,6 +196,7 @@ final class NotchWindowController {
             // If expanded, check if mouse is still in window
             if !windowFrame.contains(mouseLocation) {
                 setExpanded(false)
+                tabManager.selectedTab = .home
                 NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: false)
             }
         } else {
