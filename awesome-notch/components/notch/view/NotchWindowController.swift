@@ -12,7 +12,7 @@ final class NotchWindowController {
     private var mouseCheckTimer: Timer?
     private var dragMonitor: Any?
     
-    @ObservedObject var tabManager = TabManager.share
+    private var tabManager = TabManager.share
     
     func show() {
         if window == nil {
@@ -40,11 +40,13 @@ final class NotchWindowController {
                 // If the mouse is close to the top of the screen where the notch is
                 if mouseLocation.y > (NSScreen.main?.frame.height ?? 0) - 20 {
                     // Always switch to file tab when dragging a file
-                    tabManager.selectedTab = .file
-                    
-                    if !(trackingView?.isExpanded ?? false) {
-                        self.setExpanded(true)
-                        NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: true)
+                    DispatchQueue.main.async {
+                        self.tabManager.selectedTab = .file
+                        
+                        if !(self.trackingView?.isExpanded ?? false) {
+                            self.setExpanded(true)
+                            NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: true)
+                        }
                     }
                 }
             }
@@ -220,6 +222,7 @@ final class NotchWindowController {
     private func startMouseCheckTimer() {
         stopMouseCheckTimer()
         // Check mouse position periodically when expanded to handle gesture interruptions
+        // Timer automatically runs on current run loop (main thread)
         mouseCheckTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] _ in
             self?.checkMousePosition()
         }

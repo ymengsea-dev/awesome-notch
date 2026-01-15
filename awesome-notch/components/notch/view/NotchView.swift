@@ -33,7 +33,7 @@ struct NotchView<Content: View>: View {
             // Expanded content
             content
                 .padding(.vertical)
-                .padding(.horizontal, 30)
+                .padding(.horizontal, 35)
                 .opacity(expanded ? 1 : 0) // Hide content when collapsed
         }
         .overlay(alignment: .top) {

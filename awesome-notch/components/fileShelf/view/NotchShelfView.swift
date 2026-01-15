@@ -3,7 +3,7 @@ import UniformTypeIdentifiers
 import AppKit
 
 struct NotchShelfView: View {
-    @StateObject var shelfManager = ShelfManager.shared
+    @ObservedObject var shelfManager = ShelfManager.shared
     @State var isDraggingOver = false
     
     var body: some View {
@@ -12,66 +12,74 @@ struct NotchShelfView: View {
                 VStack(spacing: 5){
                     Image(systemName: "tray.and.arrow.down.fill")
                         .font(.title3)
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(
+                            isDraggingOver ? .blue.opacity(0.6) : .gray.opacity(0.6)
+                        )
                     Text("Drop file here")
                         .font(.title3)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(
+                            isDraggingOver ? .blue.opacity(0.6) : .gray.opacity(0.6)
+                        )
                 }
-                .background(Color.white.opacity(0.001))
-                .foregroundStyle(isDraggingOver ? .blue : .gray)
-                .padding(.horizontal, 30)
-                .padding(.vertical, 14)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .foregroundStyle(isDraggingOver ? .blue.opacity(0.6) : .gray.opacity(0.4))
                 .overlay {
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 16)
                         .stroke(style: StrokeStyle(
-                            lineWidth: 3,
-                            dash: [10,5]
+                            lineWidth: 1,
+                            dash: [10,7]
                         ))
-                        .foregroundStyle(isDraggingOver ? .blue : .gray)
+                        .foregroundStyle(
+                            isDraggingOver ? .blue.opacity(0.6) : .gray.opacity(0.4)
+                        )
                 }
                 .onDrop(of: [.fileURL], isTargeted: $isDraggingOver){ providers in
                     shelfManager.handleDrop(providers: providers)
                     return true
                 }
             }else {
-                HStack{
-                    ForEach(shelfManager.items) { item in
-                        Image(nsImage: item.icon)
-                            .resizable()
-                            .scaledToFit()
-                            .onDrag {
-                                NSItemProvider(object: item.url as NSURL)
-                            }
-                            .overlay(alignment: .topTrailing) {
-                                HStack{
-                                    Button{
-                                        shelfManager.remove(item)
-                                    }label: {
-                                        Image(systemName: "xmark.circle")
-                                            .foregroundStyle(.white)
-                                            .padding(3)
+                    ScrollView(.horizontal){
+                        HStack{
+                            ForEach(shelfManager.items) { item in
+                                Image(nsImage: item.icon)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 42, height: 42)
+                                    .onDrag {
+                                        NSItemProvider(object: item.url as NSURL)
                                     }
-                                    .buttonStyle(.plain)
-                                }
-                                .position(x: 40, y: 0)
+                                    .overlay(alignment: .topTrailing) {
+                                        HStack{
+                                            Button{
+                                                shelfManager.remove(item)
+                                            }label: {
+                                                Image(systemName: "xmark.circle")
+                                                    .foregroundStyle(.white)
+                                                    .padding(3)
+                                            }
+                                            .buttonStyle(.plain)
+                                        }
+                                        .position(x: 40, y: 5)
+                                    }
                             }
+                        }
                     }
-                }
-                .padding(.horizontal, 30)
-                .padding(.vertical, 14)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(style: StrokeStyle(
-                            lineWidth: 3,
-                            dash: [10,5]
-                        ))
-                        .foregroundStyle(isDraggingOver ? .blue : .gray)
-                }
-                .onDrop(of: [.fileURL], isTargeted: $isDraggingOver){ providers in
-                    shelfManager.handleDrop(providers: providers)
-                    return true
-                }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(style: StrokeStyle(
+                                lineWidth: 1,
+                                dash: [10,2]
+                            ))
+                            .foregroundStyle(
+                                isDraggingOver ? .blue.opacity(0.6) : .gray.opacity(0.4)
+                            )
+                    }
+                    .onDrop(of: [.fileURL], isTargeted: $isDraggingOver){ providers in
+                        shelfManager.handleDrop(providers: providers)
+                        return true
+                    }
             }
         }
     }
