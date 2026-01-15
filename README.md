@@ -2,6 +2,16 @@
 
 A macOS application that transforms your MacBook's notch into an interactive control center, providing quick access to media controls and system information directly from the top of your screen.
 
+## 📥 Downloads
+
+### Beta Releases
+
+- **[Beta 1](awesome-notch/release/awesome-notch%20beta1.dmg)** - Music Control & File Shelf Features
+  - Includes all completed features from version 1.1.1
+  - Music control with artwork background overlay
+  - File shelf with AirDrop integration
+  - Ready to use - just download, mount, and drag to Applications
+
 ## 📋 Current Status
 
 **Version: 1.1.0** (dev/version1.1.0)
