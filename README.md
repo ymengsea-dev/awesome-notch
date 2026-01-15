@@ -4,9 +4,21 @@ A macOS application that transforms your MacBook's notch into an interactive con
 
 ## 📥 Downloads
 
+### ⚠️ Important Note
+
+We don't have an Apple Developer account yet. The application will show a popup on first launch stating that the app is from an **unidentified developer**.
+
+To open the app:
+
+1. Click **OK** to close the popup.
+2. Open **System Settings → Privacy & Security**.
+3. Scroll down and click **Open Anyway** next to the warning about the app.
+4. Confirm your choice if prompted.
+
 ### Beta Releases
 
-- **[Beta 1](awesome-notch/release/awesome-notch%20beta1.dmg)** - Music Control & File Shelf Features
+- **[Download Beta 1](https://github.com/ymengsea-dev/awesome-notch/blob/release/beta-1.1.0/awesome-notch/release/awesome-notch%20beta1.dmg)**
+  - Music Control & File Shelf Features
   - Includes all completed features from version 1.1.1
   - Music control with artwork background overlay
   - File shelf with AirDrop integration
