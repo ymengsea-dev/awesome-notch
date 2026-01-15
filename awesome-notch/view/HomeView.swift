@@ -17,7 +17,7 @@ struct HomeView: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: availableWidth * 3 / 4, height: geo.size.height)
                         .blur(radius: 20)
-                        .opacity(0.3)
+                        .opacity(0.4)
                         .transition(.opacity.animation(.easeInOut(duration: 0.3)))
                         .allowsHitTesting(false)
                         .zIndex(0)

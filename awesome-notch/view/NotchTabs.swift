@@ -6,7 +6,6 @@ enum Tab {
 }
 
 struct NotchTabs: View {
-//    @State private var selectedTab: Tab = .home
     @ObservedObject var tabManager = TabManager.share
     var body: some View {
         NavigationStack{
@@ -29,7 +28,7 @@ struct NotchTabs: View {
                     Button{
                         tabManager.selectedTab = Tab.file
                     }label: {
-                        Image(systemName: "tray")
+                        Image(systemName: "tray.fill")
                             .foregroundStyle(.white)
                             .frame(width: 35, height: 20)
                             .background(tabManager.selectedTab == .file ? .gray.opacity(0.5) : .clear)
