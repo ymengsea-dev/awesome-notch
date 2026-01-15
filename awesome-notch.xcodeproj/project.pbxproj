@@ -22,7 +22,7 @@
 		FA9DFF472F140CBD00CAAC8C /* ShelfManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF402F140CBD00CAAC8C /* ShelfManager.swift */; };
 		FA9DFF482F140CBD00CAAC8C /* NotchShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF442F140CBD00CAAC8C /* NotchShelfView.swift */; };
 		FAB470482F18AD0800CA9C0E /* AirDropZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB470472F18ACFD00CA9C0E /* AirDropZoneView.swift */; };
-		FAB4704C2F18B26C00CA9C0E /* AirDropManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4704B2F18B26500CA9C0E /* AirDropManager.swift */; };
+		FAB470522F18F2BA00CA9C0E /* AirDropManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB470512F18F2BA00CA9C0E /* AirDropManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +43,7 @@
 		FA9DFF422F140CBD00CAAC8C /* ShelfItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfItem.swift; sourceTree = "<group>"; };
 		FA9DFF442F140CBD00CAAC8C /* NotchShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShelfView.swift; sourceTree = "<group>"; };
 		FAB470472F18ACFD00CA9C0E /* AirDropZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirDropZoneView.swift; sourceTree = "<group>"; };
-		FAB4704B2F18B26500CA9C0E /* AirDropManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirDropManager.swift; sourceTree = "<group>"; };
+		FAB470512F18F2BA00CA9C0E /* AirDropManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirDropManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -172,7 +172,7 @@
 		FA9DFF412F140CBD00CAAC8C /* manager */ = {
 			isa = PBXGroup;
 			children = (
-				FAB4704B2F18B26500CA9C0E /* AirDropManager.swift */,
+				FAB470512F18F2BA00CA9C0E /* AirDropManager.swift */,
 				FA9DFF402F140CBD00CAAC8C /* ShelfManager.swift */,
 			);
 			path = manager;
@@ -288,9 +288,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA9DFF112F134DBD00CAAC8C /* awesome_notchApp.swift in Sources */,
 				FA9DFF462F140CBD00CAAC8C /* ShelfItem.swift in Sources */,
 				FA9DFF472F140CBD00CAAC8C /* ShelfManager.swift in Sources */,
+				FA9DFF112F134DBD00CAAC8C /* awesome_notchApp.swift in Sources */,
 				FA9DFF482F140CBD00CAAC8C /* NotchShelfView.swift in Sources */,
 				FA9DFF132F134DBD00CAAC8C /* MusicManager.swift in Sources */,
 				FA9DFF142F134DBD00CAAC8C /* AudioSpectrum.swift in Sources */,
@@ -298,10 +298,10 @@
 				FA9DFF162F134DBD00CAAC8C /* NotchTabs.swift in Sources */,
 				FA9DFF172F134DBD00CAAC8C /* TrackingView.swift in Sources */,
 				FAB470482F18AD0800CA9C0E /* AirDropZoneView.swift in Sources */,
+				FAB470522F18F2BA00CA9C0E /* AirDropManager.swift in Sources */,
 				FA9DFF182F134DBD00CAAC8C /* GetNotchDimension.swift in Sources */,
 				FA9DFF192F134DBD00CAAC8C /* SettingsView.swift in Sources */,
 				FA9DFF1D2F134DBD00CAAC8C /* FileView.swift in Sources */,
-				FAB4704C2F18B26C00CA9C0E /* AirDropManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

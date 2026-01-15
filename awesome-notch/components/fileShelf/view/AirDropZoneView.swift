@@ -3,23 +3,20 @@ import UniformTypeIdentifiers
 
 struct AirDropZoneView: View {
     
-    @StateObject var airDropManager =  AirDropManager.shared
+    @StateObject var airDropManager = AirDropManager.shared
     @State private var isTargeted = false
 
-    
     var body: some View {
-        VStack{
-            Image(systemName: "airplayaudio")
-                .font(.title3)
-                .foregroundStyle(.gray)
-            Text("air drop")
-                .font(.title3)
-                .fontWeight(.semibold)
-                .foregroundStyle(.gray)
-                
+        VStack(spacing: 8) {
+            Image(systemName: "dot.radiowaves.left.and.right")
+                .font(.system(size: 24))
+            Text("AirDrop")
+                .fontWeight(.bold)
         }
+        .foregroundStyle(isTargeted ? .blue : .gray)
         .padding(.horizontal, 30)
         .padding(.vertical, 14)
+        .background(Color.white.opacity(0.001))
         .overlay {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(style: StrokeStyle(
@@ -28,7 +25,7 @@ struct AirDropZoneView: View {
                 ))
                 .foregroundStyle(isTargeted ? .blue : .gray)
         }
-        .onDrop(of: [.fileURL], isTargeted: $isTargeted){ providers in
+        .onDrop(of: [.fileURL], isTargeted: $isTargeted) { providers in
             airDropManager.handleAirDrop(providers: providers)
             return true
         }

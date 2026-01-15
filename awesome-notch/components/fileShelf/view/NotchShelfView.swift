@@ -18,6 +18,8 @@ struct NotchShelfView: View {
                         .fontWeight(.semibold)
                         .foregroundStyle(.gray)
                 }
+                .background(Color.white.opacity(0.001))
+                .foregroundStyle(isDraggingOver ? .blue : .gray)
                 .padding(.horizontal, 30)
                 .padding(.vertical, 14)
                 .overlay {
@@ -27,6 +29,10 @@ struct NotchShelfView: View {
                             dash: [10,5]
                         ))
                         .foregroundStyle(isDraggingOver ? .blue : .gray)
+                }
+                .onDrop(of: [.fileURL], isTargeted: $isDraggingOver){ providers in
+                    shelfManager.handleDrop(providers: providers)
+                    return true
                 }
             }else {
                 HStack{
@@ -62,13 +68,11 @@ struct NotchShelfView: View {
                         ))
                         .foregroundStyle(isDraggingOver ? .blue : .gray)
                 }
+                .onDrop(of: [.fileURL], isTargeted: $isDraggingOver){ providers in
+                    shelfManager.handleDrop(providers: providers)
+                    return true
+                }
             }
-        }
-        .background(isDraggingOver ? Color.white.opacity(0.1) : Color.clear)
-        .cornerRadius(15)
-        .onDrop(of: [.fileURL], isTargeted: $isDraggingOver){ providers in
-            shelfManager.handleDrop(providers: providers)
-            return true
         }
     }
 }
