@@ -62,6 +62,11 @@
 			path = release;
 			sourceTree = "<group>";
 		};
+		FAA7BA812F1D3A1E00807680 /* setting */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = setting;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +119,7 @@
 		FA9DFEFE2F134DBD00CAAC8C /* components */ = {
 			isa = PBXGroup;
 			children = (
+				FAA7BA812F1D3A1E00807680 /* setting */,
 				FA9DFEF92F134DBD00CAAC8C /* mediaContol */,
 				FA9DFEFD2F134DBD00CAAC8C /* notch */,
 				FA9DFF452F140CBD00CAAC8C /* fileShelf */,
@@ -222,6 +228,7 @@
 				FA9DFF4C2F14123200CAAC8C /* view */,
 				FA9DFF4D2F14124200CAAC8C /* manager */,
 				FAA7BA622F19624600807680 /* release */,
+				FAA7BA812F1D3A1E00807680 /* setting */,
 			);
 			name = "awesome-notch";
 			packageProductDependencies = (

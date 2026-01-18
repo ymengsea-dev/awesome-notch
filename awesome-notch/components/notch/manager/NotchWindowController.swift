@@ -289,12 +289,17 @@ final class NotchWindowController {
                 return
             }
         let window = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 400, height: 300),
-                styleMask: [.titled, .closable],
+                contentRect: NSRect(x: 0, y: 0, width: 700, height: 500),
+                styleMask: [.titled, .closable, .miniaturizable, .fullSizeContentView],
                 backing: .buffered,
                 defer: false
             )
+        
         window.identifier = NSUserInterfaceItemIdentifier("SettingsWindow")
+        window.titleVisibility = .hidden // Hides the title text
+        window.titlebarAppearsTransparent = true
+        window.toolbarStyle = .unified // Aligns buttons with the sidebar
+        
         window.isReleasedWhenClosed = false
         window.center()
         window.contentView = NSHostingView(rootView: SettingsView())
