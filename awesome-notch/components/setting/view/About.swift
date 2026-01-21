@@ -12,7 +12,7 @@ struct About: View {
                     .font(.system(size: 24, weight: .bold))
                 Text("A macOS application that transforms your MacBook's notch into an interactive control center, providing quick access to media controls and system information directly from the top of your screen.")
                     .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
+                    .multilineTextAlignment(.leading)
                     
                 Text("Version 1.2.1")
                     .foregroundColor(.secondary)

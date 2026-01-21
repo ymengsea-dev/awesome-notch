@@ -13,6 +13,19 @@ final class NotchWindowController {
     private var dragMonitor: Any?
     
     private var tabManager = TabManager.share
+    private let settings = SettingsManager()
+    
+    private var pendingExpandWorkItem: DispatchWorkItem?
+    
+    init() {
+        // Listen for settings apply notification
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applySettings),
+            name: NSNotification.Name("ApplyNotchSettings"),
+            object: nil
+        )
+    }
     
     func show() {
         if window == nil {
@@ -60,21 +73,29 @@ final class NotchWindowController {
     deinit {
         stopMouseCheckTimer()
         NotificationCenter.default.removeObserver(self)
+        if let dragMonitor = dragMonitor {
+            NSEvent.removeMonitor(dragMonitor)
+        }
     }
      
     // create floating window for notch
     private func createWindow(){
         guard let screen = NSScreen.main else {return}
         
-        // Initialize notch size on first window creation
-        if notchSize == nil {
-            notchSize = screen.notchSize
+        // Initialize notch size from settings or screen
+        let settingsWidth = CGFloat(settings.notchSize.rawValue)
+        if let screenNotchSize = screen.notchSize {
+            // Use screen notch height, but width from settings
+            notchSize = CGSize(width: settingsWidth, height: screenNotchSize.height)
+        } else {
+            // Fallback: use proportional height
+            notchSize = CGSize(width: settingsWidth, height: settingsWidth * 32 / 100)
         }
         
         let screenFrame = screen.frame
         
         let collapsedHeight: CGFloat = (notchSize?.height ?? 42)
-        let expandedWidth: CGFloat = 450.0 // width of notch when it expanded
+        let expandedWidth: CGFloat = settingsWidth // width of notch when it expanded
         let expandedHeight: CGFloat = 140 // height of notch when it expanded
         
         // Always use expanded size for window frame to prevent mouse tracking issues
@@ -90,7 +111,7 @@ final class NotchWindowController {
         
         let hostingView = NSHostingView(rootView: NotchView {
             NotchTabs()
-        })
+        }.environmentObject(settings))
         
         // Create tracking view wrapper matching window size
         let trackingView = TrackingView(frame: NSRect(x: 0, y: 0, width: expandedWidth, height: expandedHeight))
@@ -110,16 +131,31 @@ final class NotchWindowController {
         
         trackingView.onMouseEntered = { [weak self] in
             guard let self = self, !(self.trackingView?.isExpanded ?? false) else { return }
-            self.setExpanded(true)
-            NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: true)
+            self.pendingExpandWorkItem?.cancel()
+            let workItem = DispatchWorkItem { [weak self] in
+                    guard let self = self else { return }
+                    self.setExpanded(true)
+                    NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: true)
+                }
+            self.pendingExpandWorkItem = workItem
+            DispatchQueue.main
+                .asyncAfter(
+                    deadline: .now() + settings.expandSensitivity ,
+                    execute: workItem
+                )
         }
         trackingView.onMouseExited = { [weak self] in
             guard let self = self else { return }
+            
+            self.pendingExpandWorkItem?.cancel()
+            self.pendingExpandWorkItem = nil
+            
             // Only handle mouse exit when expanded (to collapse)
             guard let trackingView = self.trackingView, trackingView.isExpanded else { return }
             
-            // Add small delay to prevent flicker when mouse moves during animation
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            // Add delay from settings to prevent flicker when mouse moves during animation
+            let delay = self.settings.expandSensitivity
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
                 // The periodic timer will handle checking, but we can also check here
                 self?.checkMousePosition()
             }
@@ -247,9 +283,14 @@ final class NotchWindowController {
             stopMouseCheckTimer()
         }
         
-        // Ensure notch size is initialized
-        if notchSize == nil {
-            notchSize = screen.notchSize
+        // Ensure notch size is initialized from settings
+        let settingsWidth = CGFloat(settings.notchSize.rawValue)
+        if let screenNotchSize = screen.notchSize {
+            // Use screen notch height, but width from settings
+            notchSize = CGSize(width: settingsWidth, height: screenNotchSize.height)
+        } else {
+            // Fallback: use proportional height
+            notchSize = CGSize(width: settingsWidth, height: settingsWidth * 32 / 100)
         }
         
         let safeInsets = screen.safeAreaInsets
@@ -257,7 +298,7 @@ final class NotchWindowController {
 
         // Add extra height to extend below physical notch for displaying content
         let collapsedHeight = (notchSize?.height ?? 42)
-        let expandedWidth = 450.0
+        let expandedWidth = settingsWidth
         let expandedHeight: CGFloat = 140
         
         // Window always stays at expanded size, we just animate the visual content
@@ -304,6 +345,20 @@ final class NotchWindowController {
         window.center()
         window.contentView = NSHostingView(rootView: SettingsView())
         window.makeKeyAndOrderFront(nil)
+    }
+    
+    @objc private func applySettings() {
+        // Recreate window with new settings
+        let wasVisible = window?.isVisible ?? false
+        if window != nil {
+            window?.orderOut(nil)
+            window = nil
+            trackingView = nil
+        }
+        if wasVisible {
+            createWindow()
+            show()
+        }
     }
     
 }

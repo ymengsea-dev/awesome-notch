@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     
     @State private var selection: SidebarItems? = .general
+    @StateObject private var settings = SettingsManager()
     
     var body: some View {
         NavigationSplitView {
@@ -18,21 +19,27 @@ struct SettingsView: View {
             case .general:
                 General()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .environmentObject(settings)
             case .media:
                 MusicControl()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .environmentObject(settings)
             case .shelf:
                 FileShelf()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .environmentObject(settings)
             case .webcame:
                 Webcame()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .environmentObject(settings)
             case .appearance:
                 Appearance()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .environmentObject(settings)
             case .about:
                 About()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .environmentObject(settings)
             case .none:
                 EmptyView()
             }

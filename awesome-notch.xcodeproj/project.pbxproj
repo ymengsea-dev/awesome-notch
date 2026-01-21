@@ -21,6 +21,7 @@
 		FA9DFF462F140CBD00CAAC8C /* ShelfItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF422F140CBD00CAAC8C /* ShelfItem.swift */; };
 		FA9DFF472F140CBD00CAAC8C /* ShelfManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF402F140CBD00CAAC8C /* ShelfManager.swift */; };
 		FA9DFF482F140CBD00CAAC8C /* NotchShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF442F140CBD00CAAC8C /* NotchShelfView.swift */; };
+		FAA7BAA02F2137AA00807680 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7BA9F2F2137A500807680 /* LaunchManager.swift */; };
 		FAB470482F18AD0800CA9C0E /* AirDropZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB470472F18ACFD00CA9C0E /* AirDropZoneView.swift */; };
 		FAB470522F18F2BA00CA9C0E /* AirDropManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB470512F18F2BA00CA9C0E /* AirDropManager.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		FA9DFF402F140CBD00CAAC8C /* ShelfManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfManager.swift; sourceTree = "<group>"; };
 		FA9DFF422F140CBD00CAAC8C /* ShelfItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfItem.swift; sourceTree = "<group>"; };
 		FA9DFF442F140CBD00CAAC8C /* NotchShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShelfView.swift; sourceTree = "<group>"; };
+		FAA7BA9F2F2137A500807680 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		FAB470472F18ACFD00CA9C0E /* AirDropZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirDropZoneView.swift; sourceTree = "<group>"; };
 		FAB470512F18F2BA00CA9C0E /* AirDropManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirDropManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +140,7 @@
 		FA9DFF032F134DBD00CAAC8C /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				FAA7BA9F2F2137A500807680 /* LaunchManager.swift */,
 				FA9DFF012F134DBD00CAAC8C /* GetNotchDimension.swift */,
 				FA9DFF022F134DBD00CAAC8C /* TrackingView.swift */,
 			);
@@ -299,6 +302,7 @@
 				FA9DFF112F134DBD00CAAC8C /* awesome_notchApp.swift in Sources */,
 				FA9DFF482F140CBD00CAAC8C /* NotchShelfView.swift in Sources */,
 				FA9DFF132F134DBD00CAAC8C /* MusicManager.swift in Sources */,
+				FAA7BAA02F2137AA00807680 /* LaunchManager.swift in Sources */,
 				FA9DFF142F134DBD00CAAC8C /* AudioSpectrum.swift in Sources */,
 				FA9DFF152F134DBD00CAAC8C /* HomeView.swift in Sources */,
 				FA9DFF162F134DBD00CAAC8C /* NotchTabs.swift in Sources */,

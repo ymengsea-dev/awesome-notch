@@ -3,6 +3,7 @@ import AppKit
 
 struct NotchView<Content: View>: View {
     @ObservedObject private var musicManager = MusicManager.shared
+    @EnvironmentObject var settings: SettingsManager
     @State private var expanded = false
     @State private var notchSize: CGSize? = nil
     
@@ -22,7 +23,7 @@ struct NotchView<Content: View>: View {
             topCornerRadius: expanded ? 22 : 12,
             bottomCornerRadius: expanded ? 22 : 12
         )
-        .fill(expanded ? .black : (musicManager.isPlaying ? .black : .clear))
+        .fill(expanded ? settings.notchColor : (musicManager.isPlaying ? settings.notchColor : .clear))
         .frame(
             width: expanded ? nil : collapsedWidth,
             height: expanded ? nil : collapsedHeight
@@ -83,7 +84,7 @@ struct NotchView<Content: View>: View {
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("NotchExpanded"))) { notification in
             if let isExpanded = notification.object as? Bool {
                 withAnimation(
-                    isExpanded ? .bouncy(duration: 0.2): .snappy(duration: 0.2)
+                    isExpanded ? .bouncy(duration: 0.3): .snappy(duration: 0.3)
                 ) {
                     expanded = isExpanded
                 }
