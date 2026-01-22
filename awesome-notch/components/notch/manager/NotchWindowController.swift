@@ -17,16 +17,6 @@ final class NotchWindowController {
     
     private var pendingExpandWorkItem: DispatchWorkItem?
     
-    init() {
-        // Listen for settings apply notification
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(applySettings),
-            name: NSNotification.Name("ApplyNotchSettings"),
-            object: nil
-        )
-    }
-    
     func show() {
         if window == nil {
             createWindow()

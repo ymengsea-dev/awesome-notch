@@ -39,36 +39,50 @@ struct NotchView<Content: View>: View {
         }
         .overlay(alignment: .top) {
             // Collapsed content: artwork and spectrum positioned at top of notch
-            if !expanded && musicManager.isPlaying {
-                HStack{
-                    // Artwork on the left
-                    Group {
-                        if let artwork = musicManager.artwork {
-                            Image(nsImage: artwork)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .transition(.opacity.animation(.easeInOut(duration: 0.3)))
-                        } else {
-                            Image("apple_music")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .transition(.opacity.animation(.easeInOut(duration: 0.3)))
-                                .animation(.bouncy,value: musicManager.isPlaying)
+            if settings.isOverflowNotchWhenPlaying {
+                if !expanded && musicManager.isPlaying {
+                    HStack{
+                        // Artwork on the left
+                        Group {
+                            if let artwork = musicManager.artwork {
+                                Image(nsImage: artwork)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .transition(.opacity.animation(.easeInOut(duration: 0.3)))
+                            } else {
+                                Image("apple_music")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .transition(.opacity.animation(.easeInOut(duration: 0.3)))
+                                    .animation(.bouncy,value: musicManager.isPlaying)
+                            }
                         }
+                        .frame(width: 24, height: 24)
+                        .cornerRadius(3)
+                        .clipped()
+                        Spacer()
+                        
+                        // Audio spectrum on the right
+                        AudioSpectrum(isPlaying: musicManager.isPlaying)
                     }
-                    .frame(width: 24, height: 24)
-                    .cornerRadius(3)
-                    .clipped()
-                    Spacer()
                     
-                    // Audio spectrum on the right
-                    AudioSpectrum(isPlaying: musicManager.isPlaying)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 10)
+                    .frame(width: collapsedWidth, alignment: .top)
+                    .overlay(
+                        Group {
+                            if settings.isNotchBorder {
+                                NotchShape(
+                                    topCornerRadius: expanded ? 22 : 12,
+                                    bottomCornerRadius: expanded ? 22 : 12
+                                )
+                                .stroke(settings.NotchBorderColor, lineWidth: 2)
+                            }
+                        }
+                    )
+                    .transition(.opacity.combined(with: .scale(scale: 0.5)))
+                    .opacity(expanded ? 0 : 1)
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 10)
-                .frame(width: collapsedWidth, alignment: .top)
-                .transition(.opacity.combined(with: .scale(scale: 0.5)))
-                .opacity(expanded ? 0 : 1)
             }
         }
         .animation(.bouncy, value: musicManager.isPlaying)

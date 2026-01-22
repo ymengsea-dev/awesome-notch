@@ -4,7 +4,7 @@ struct AudioSpectrum: View {
     let isPlaying: Bool
     @State private var barHeights: [CGFloat] = []
     @State private var timer: Timer?
-    
+    @EnvironmentObject var settings: SettingsManager
     private let barCount = 4
     private let minHeight: CGFloat = 2
     private let maxHeight: CGFloat = 16
@@ -13,7 +13,7 @@ struct AudioSpectrum: View {
         HStack(spacing: 2.5) {
             ForEach(0..<barCount, id: \.self) { index in
                 RoundedRectangle(cornerRadius: 1.5)
-                    .fill(.white)
+                    .fill(settings.colorSpectrum)
                     .frame(
                         width: 2.5,
                         height: isPlaying ? barHeights[safe: index] ?? minHeight : minHeight
@@ -27,7 +27,7 @@ struct AudioSpectrum: View {
                 startAnimation()
             }
         }
-        .onChange(of: isPlaying) { newValue in
+        .onChange(of: isPlaying) { newValue, _ in
             if newValue {
                 startAnimation()
             } else {
