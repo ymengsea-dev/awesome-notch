@@ -172,4 +172,7 @@ class SettingsManager: ObservableObject{
     ]
     @AppStorage("overflowNotchWhenPlaying") var isOverflowNotchWhenPlaying = true  // extend side noth when playing
     
+    
+    // ----- shelf setting -----
+    @AppStorage("isOpenFileWhenHasItem") var isOpenFileWhenHasItem = true 
 }

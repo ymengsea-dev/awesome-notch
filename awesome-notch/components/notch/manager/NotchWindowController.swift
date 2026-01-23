@@ -5,6 +5,8 @@ final class NotchWindowController {
     
     static let shared = NotchWindowController()
     
+    @ObservedObject var shelfManager = ShelfManager.shared
+    
     private var window: NSWindow?
     private var trackingView: TrackingView?
     private var notchSize: CGSize?
@@ -224,7 +226,17 @@ final class NotchWindowController {
             // If expanded, check if mouse is still in window
             if !windowFrame.contains(mouseLocation) {
                 setExpanded(false)
-                tabManager.selectedTab = .home
+                // check if there are any item in sheld set tab to file
+                if settings.isOpenFileWhenHasItem {
+                    if shelfManager.items.isEmpty {
+                        tabManager.selectedTab = .home
+                    }else {
+                        tabManager.selectedTab = .file
+                    }
+                }else {
+                    tabManager.selectedTab = .home
+                }
+                
                 NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: false)
             }
         } else {
