@@ -26,7 +26,7 @@ struct FileShelf: View {
             
             Section {
                 // Enable grab bunch of file button
-                Toggle("Open shelf if there item", isOn: Binding(
+                Toggle("Enable grab all button", isOn: Binding(
                     get: { settings.isGrabBunch },
                     set: { newValue in
                         settings.isGrabBunch = newValue

@@ -7,5 +7,6 @@ struct Webcame: View {
 }
 // enable webcame
 // webcame shape
-// webcame size
-
+// notch collape when open webcame
+// seperate webcame another tab
+// enable webcame in home tab

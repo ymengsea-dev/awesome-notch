@@ -98,7 +98,7 @@ struct NotchView<Content: View>: View {
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("NotchExpanded"))) { notification in
             if let isExpanded = notification.object as? Bool {
                 withAnimation(
-                    isExpanded ? .bouncy(duration: 0.3): .snappy(duration: 0.3)
+                    isExpanded ? .bouncy(duration: 0.2): .snappy(duration: 0.2)
                 ) {
                     expanded = isExpanded
                 }
