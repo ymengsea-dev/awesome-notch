@@ -23,9 +23,17 @@ struct FileShelf: View {
                     }
                 ))
             }
+            
+            Section {
+                // Enable grab bunch of file button
+                Toggle("Open shelf if there item", isOn: Binding(
+                    get: { settings.isGrabBunch },
+                    set: { newValue in
+                        settings.isGrabBunch = newValue
+                    }
+                ))
+            }
         }
         .formStyle(.grouped)
     }
 }
-
-// grabe a buntch or single

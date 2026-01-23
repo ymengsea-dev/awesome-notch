@@ -24,6 +24,8 @@
 		FAA7BAA02F2137AA00807680 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7BA9F2F2137A500807680 /* LaunchManager.swift */; };
 		FAB470482F18AD0800CA9C0E /* AirDropZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB470472F18ACFD00CA9C0E /* AirDropZoneView.swift */; };
 		FAB470522F18F2BA00CA9C0E /* AirDropManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB470512F18F2BA00CA9C0E /* AirDropManager.swift */; };
+		FAB470532F18F2BB00CA9C0E /* MultiItemDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB470542F18F2BB00CA9C0E /* MultiItemDragView.swift */; };
+		FAB470552F18F2BC00CA9C0E /* ItemDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB470562F18F2BC00CA9C0E /* ItemDragView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		FAA7BA9F2F2137A500807680 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		FAB470472F18ACFD00CA9C0E /* AirDropZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirDropZoneView.swift; sourceTree = "<group>"; };
 		FAB470512F18F2BA00CA9C0E /* AirDropManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirDropManager.swift; sourceTree = "<group>"; };
+		FAB470542F18F2BB00CA9C0E /* MultiItemDragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiItemDragView.swift; sourceTree = "<group>"; };
+		FAB470562F18F2BC00CA9C0E /* ItemDragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDragView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -208,6 +212,8 @@
 			children = (
 				FAB470472F18ACFD00CA9C0E /* AirDropZoneView.swift */,
 				FA9DFF442F140CBD00CAAC8C /* NotchShelfView.swift */,
+				FAB470542F18F2BB00CA9C0E /* MultiItemDragView.swift */,
+				FAB470562F18F2BC00CA9C0E /* ItemDragView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -309,6 +315,8 @@
 				FA9DFF172F134DBD00CAAC8C /* TrackingView.swift in Sources */,
 				FAB470482F18AD0800CA9C0E /* AirDropZoneView.swift in Sources */,
 				FAB470522F18F2BA00CA9C0E /* AirDropManager.swift in Sources */,
+				FAB470532F18F2BB00CA9C0E /* MultiItemDragView.swift in Sources */,
+				FAB470552F18F2BC00CA9C0E /* ItemDragView.swift in Sources */,
 				FA9DFF182F134DBD00CAAC8C /* GetNotchDimension.swift in Sources */,
 				FA9DFF192F134DBD00CAAC8C /* SettingsView.swift in Sources */,
 				FA9DFF1D2F134DBD00CAAC8C /* FileView.swift in Sources */,

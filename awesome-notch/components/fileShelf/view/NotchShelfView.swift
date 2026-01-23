@@ -5,6 +5,7 @@ import AppKit
 struct NotchShelfView: View {
     @ObservedObject var shelfManager = ShelfManager.shared
     @State var isDraggingOver = false
+    @EnvironmentObject var settings: SettingsManager
     
     var body: some View {
         HStack{
@@ -46,27 +47,33 @@ struct NotchShelfView: View {
                             VStack {
                                 HStack(alignment: .center, spacing: 10){
                                     ForEach(shelfManager.items) { item in
-                                        Image(nsImage: item.icon)
-                                            .resizable()
-                                            .scaledToFit()
+                                        ZStack {
+                                            Image(nsImage: item.displayImage)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 42, height: 42)
+                                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                                .allowsHitTesting(false)
+                                            
+                                            ItemDragView(item: item) {
+                                                shelfManager.remove(item)
+                                            }
                                             .frame(width: 42, height: 42)
-                                            .onDrag {
-                                                NSItemProvider(object: item.url as NSURL)
-                                            }
-                                            .overlay(alignment: .topTrailing) {
-                                                HStack{
-                                                    Button{
-                                                        shelfManager.remove(item)
-                                                    }label: {
-                                                        Image(systemName: "xmark")
-                                                            .fontWeight(.bold)
-                                                            .foregroundStyle(.white)
-                                                            .padding(3)
-                                                    }
-                                                    .buttonStyle(.plain)
+                                        }
+                                        .overlay(alignment: .topTrailing) {
+                                            HStack{
+                                                Button{
+                                                    shelfManager.remove(item)
+                                                }label: {
+                                                    Image(systemName: "xmark")
+                                                        .fontWeight(.bold)
+                                                        .foregroundStyle(.white)
+                                                        .padding(3)
                                                 }
-                                                .position(x: 40, y: 5)
+                                                .buttonStyle(.plain)
                                             }
+                                            .position(x: 40, y: 5)
+                                        }
                                     }
                                 }
                                 .padding(.horizontal, 10)
@@ -85,6 +92,31 @@ struct NotchShelfView: View {
                             .foregroundStyle(
                                 isDraggingOver ? .blue.opacity(0.6) : .gray.opacity(0.5)
                             )
+                    }
+                    .overlay(alignment: .bottomTrailing) {
+                        if settings.isGrabBunch {
+                            if !shelfManager.items.isEmpty {
+                                ZStack {
+                                    MultiItemDragView(items: shelfManager.items) {
+                                        // Remove all items when drag completes successfully
+                                        shelfManager.items.forEach { item in
+                                            shelfManager.remove(item)
+                                        }
+                                    }
+                                    .frame(width: 24, height: 24)
+                                    
+                                    Image(systemName: "hand.raised.fill")
+                                        .font(.caption)
+                                        .foregroundStyle(.white)
+                                        .allowsHitTesting(false)
+                                }
+                                .background(
+                                    Circle()
+                                        .fill(Color.blue.opacity(0.7))
+                                )
+                                .padding(8)
+                            }
+                        }
                     }
                     .onDrop(of: [.fileURL], isTargeted: $isDraggingOver){ providers in
                         shelfManager.handleDrop(providers: providers)

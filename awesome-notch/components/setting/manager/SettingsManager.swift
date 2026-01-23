@@ -174,5 +174,6 @@ class SettingsManager: ObservableObject{
     
     
     // ----- shelf setting -----
-    @AppStorage("isOpenFileWhenHasItem") var isOpenFileWhenHasItem = true 
+    @AppStorage("isOpenFileWhenHasItem") var isOpenFileWhenHasItem = true
+    @AppStorage("isGrabBunch") var isGrabBunch = true
 }
