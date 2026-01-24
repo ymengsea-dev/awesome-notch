@@ -5,6 +5,8 @@ import Combine
 class CameraManager: ObservableObject {
     @Published var session = AVCaptureSession()
 
+    private let sessionQueue = DispatchQueue(label: "camera.session.queue")
+    
     func checkPermissions() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
@@ -12,7 +14,7 @@ class CameraManager: ObservableObject {
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { granted in
                 if granted {
-                    DispatchQueue.main.async { self.setupSession() }
+                    self.setupSession()
                 }
             }
         default: break
@@ -20,7 +22,7 @@ class CameraManager: ObservableObject {
     }
 
     private func setupSession() {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        sessionQueue.async { [weak self] in
             guard let self = self else { return }
             
             // If we already have inputs, just start running and exit
@@ -44,8 +46,17 @@ class CameraManager: ObservableObject {
     }
     
     func startSession() {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        sessionQueue.async { [weak self] in
             self?.session.startRunning()
+        }
+    }
+    
+    func stopSession() {
+        sessionQueue.async { [weak self] in
+            guard let self = self else { return }
+            if self.session.isRunning {
+                self.session.stopRunning()
+            }
         }
     }
 }

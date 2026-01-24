@@ -4,6 +4,7 @@ struct HomeView: View {
     
     @StateObject var nowPlaying = MusicManager.shared
     let spacing: CGFloat = 10
+    @EnvironmentObject var settings: SettingsManager
     
     var body: some View {
         GeometryReader { geo in
@@ -93,9 +94,14 @@ struct HomeView: View {
                 }
                 .frame(width: availableWidth * 3 / 4)
                 
-                NotchCameraView()
-                    .padding(.bottom)
-                    .frame(width: availableWidth * 1 / 4)
+                if settings.isEnableWebcame{
+                    NotchCameraView()
+                        .padding(.bottom)
+                        .frame(width: availableWidth * 1 / 4)
+                }else{
+                    EmptyView()
+                        .frame(width: availableWidth * 1 / 4)
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

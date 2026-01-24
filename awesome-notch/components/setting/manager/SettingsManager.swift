@@ -176,4 +176,17 @@ class SettingsManager: ObservableObject{
     // ----- shelf setting -----
     @AppStorage("isOpenFileWhenHasItem") var isOpenFileWhenHasItem = true
     @AppStorage("isGrabBunch") var isGrabBunch = true
+    
+    // ---- webcame setting ----
+    @AppStorage("isEnableWebcame") var isEnableWebcame = true // enable webcame in home tab
+    @AppStorage(
+        "webcameShape"
+    ) var webcameShapeRaw: String = WebcameShape.roundedRectangle.rawValue  // webcame shape
+    var webcameShape: WebcameShape {
+        get { WebcameShape(rawValue: webcameShapeRaw) ?? .roundedRectangle }
+        set { webcameShapeRaw = newValue.rawValue }
+    }
+    @AppStorage("isKeepNotchExtendedWhenCameraOn") var isKeepNotchExtendedWhenCameraOn = false // keep notch extended when camera is on
+    @AppStorage("isEnableWebcameTab") var isEnableWebcameTab = false // seperate webcame another tab
+    
 }

@@ -14,6 +14,8 @@ final class NotchWindowController {
     private var mouseCheckTimer: Timer?
     private var dragMonitor: Any?
     
+    private var isCameraRunning = false
+    
     private var tabManager = TabManager.share
     private let settings = SettingsManager()
     
@@ -196,8 +198,31 @@ final class NotchWindowController {
             name: NSApplication.didResignActiveNotification,
             object: nil
         )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(cameraStateChanged(_:)),
+            name: NSNotification.Name("CameraStateChanged"),
+            object: nil
+        )
 
         self.window = window
+    }
+    
+    @objc private func cameraStateChanged(_ notification: Notification) {
+        guard let isRunning = notification.object as? Bool else { return }
+        isCameraRunning = isRunning
+        
+        if settings.isKeepNotchExtendedWhenCameraOn {
+            if isCameraRunning {
+                // Force expand if camera is on
+                setExpanded(true)
+                NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: true)
+            } else {
+                // If camera stopped, check if we should collapse (e.g. mouse is out)
+                checkMousePosition()
+            }
+        }
     }
     
     @objc private func applicationDidBecomeActive() {
@@ -225,6 +250,11 @@ final class NotchWindowController {
         if trackingView.isExpanded {
             // If expanded, check if mouse is still in window
             if !windowFrame.contains(mouseLocation) {
+                // Check if we should keep it open due to camera
+                if settings.isKeepNotchExtendedWhenCameraOn && isCameraRunning {
+                    return
+                }
+                
                 setExpanded(false)
                 // check if there are any item in sheld set tab to file
                 if settings.isOpenFileWhenHasItem {
