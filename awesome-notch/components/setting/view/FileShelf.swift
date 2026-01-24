@@ -16,22 +16,34 @@ struct FileShelf: View {
             
             Section {
                 // Enable open file tab if there items
-                Toggle("Open shelf if there item", isOn: Binding(
-                    get: { settings.isOpenFileWhenHasItem },
-                    set: { newValue in
-                        settings.isOpenFileWhenHasItem = newValue
-                    }
-                ))
+                VStack{
+                    Toggle("Open shelf if there item", isOn: Binding(
+                        get: { settings.isOpenFileWhenHasItem },
+                        set: { newValue in
+                            settings.isOpenFileWhenHasItem = newValue
+                        }
+                    ))
+                    Text("Auto open notch in shelf tab if there any item in shelf")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
             
             Section {
                 // Enable grab bunch of file button
-                Toggle("Enable grab all button", isOn: Binding(
-                    get: { settings.isGrabBunch },
-                    set: { newValue in
-                        settings.isGrabBunch = newValue
-                    }
-                ))
+                VStack{
+                    Toggle("Enable grab all button", isOn: Binding(
+                        get: { settings.isGrabBunch },
+                        set: { newValue in
+                            settings.isGrabBunch = newValue
+                        }
+                    ))
+                    Text("Show the button for grab all items in shelf")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
         }
         .formStyle(.grouped)

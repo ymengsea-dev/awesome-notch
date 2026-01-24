@@ -62,13 +62,16 @@ struct NotchShelfView: View {
                                         }
                                         .overlay(alignment: .topTrailing) {
                                             HStack{
-                                                Button{
+                                                Button {
                                                     shelfManager.remove(item)
-                                                }label: {
-                                                    Image(systemName: "xmark")
+                                                } label: {
+                                                    Image(systemName: "minus")
                                                         .fontWeight(.bold)
                                                         .foregroundStyle(.white)
-                                                        .padding(3)
+                                                        .padding(5)
+                                                        .background(Color.red)
+                                                        .clipShape(Circle())
+                                                        .contentShape(Circle())
                                                 }
                                                 .buttonStyle(.plain)
                                             }

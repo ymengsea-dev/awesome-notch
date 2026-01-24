@@ -17,7 +17,7 @@ To open the app:
 
 ### Beta Releases
 
-- **[Download Beta 1](https://github.com/ymengsea-dev/awesome-notch/blob/release/beta-1.1.0/awesome-notch/release/awesome-notch%20beta1.dmg)**
+- **[Download version1.5.3 Beta 1](https://github.com/ymengsea-dev/awesome-notch/releases/download/v1.5.3beta1/Awesome.Notch.dmg)**
   - Music Control & File Shelf Features
   - Includes all completed features from version 1.1.1
   - Music control with artwork background overlay
@@ -26,35 +26,57 @@ To open the app:
 
 ## 📋 Current Status
 
-**Version: 1.1.0** (dev/version1.1.0)
+**Version: 1.5.3**
 
-### ✅ Completed Features
+### Version Breakdown
+- **Infra**: 1
+- **Features**: 5
+- **Patches**: 3
 
-- **Music Control Feature** - Fully implemented and functional
+### ✅ Completed Features (5)
 
-  - Real-time music playback information display
-  - Play/Pause, Next Track, Previous Track controls
-  - artwork display
-  - Audio spectrum visualization
-  - Integration with macOS MediaRemote framework
-  - Support for all major music apps (Apple Music, Spotify, etc.)
+1. **Music Control** - Fully implemented and functional
+   - Real-time music playback information display
+   - Play/Pause, Next Track, Previous Track controls
+   - Artwork display with background overlay
+   - Audio spectrum visualization
+   - Integration with macOS MediaRemote framework
+   - Support for all major music apps (Apple Music, Spotify, etc.)
 
-- **File Shelf Feature** - Fully implemented and functional
-  - Drag and drop files into the shelf for quick access
-  - Visual file icons display
-  - Remove files from the container
-  - Drag files out from the shelf
-  - Horizontal scrollable view for multiple files
-  - AirDrop integration for quick file sharing
-  - Auto-switch to File tab when dragging files near the notch
+2. **File Shelf** - Fully implemented and functional
+   - Drag and drop files into the shelf for quick access
+   - Visual file icons display
+   - Drag files out from the shelf
+   - Horizontal scrollable view for multiple files
 
-### 🚧 Upcoming Features
+3. **Webcam** - Fully implemented and functional
+   - Live webcam preview in the notch
+   - Multiple shape options (Rounded Rectangle, Circle, Rectangle)
+   - Toggle camera on/off with a tap
+   - Option to keep notch expanded while camera is running
+   - Separate webcam tab option
 
-- Settings panel (basic structure in place)
+4. **Settings** - Fully implemented and functional
+   - General settings (notch size, color, expand sensitivity, launch at login)
+   - Music control settings (spectrum color, notch border, extend notch when playing)
+   - File shelf settings (open file when has item, grab bunch)
+   - Webcam settings (enable webcam, shape selection, keep notch extended)
+
+5. **AirDrop** - Fully implemented and functional
+   - Dedicated AirDrop zone for quick file sharing
+   - Drop files on the AirDrop zone to trigger AirDrop sharing
+   - Visual feedback when files are targeted for AirDrop
+   - Auto-switch to File tab when dragging files near the notch
+
+### 🔧 Patches (3)
+
+- **Camera bugfix** - Fixed camera session management and state handling
+- **Music control bugfix** - Fixed music playback state synchronization
+- **File shelf bugfix** - Fixed file drag and drop operations
 
 ## 🎯 Features
 
-### Music Control (v1.1.0)
+### Music Control (v1.0.0)
 
 The notch interface provides a seamless music control experience:
 
@@ -102,44 +124,122 @@ Quick file management directly from the notch:
   - Automatically switches to the File tab when dragging files near the notch
   - Seamless integration with the notch expansion system
 
+### Webcam (v1.5.0)
+
+Live webcam preview directly in the notch:
+
+- **Camera Preview**:
+
+  - Live webcam feed displayed in the notch
+  - Toggle camera on/off with a single tap
+  - Mirrored preview for natural viewing
+
+- **Shape Options**:
+
+  - Rounded Rectangle (default)
+  - Circle
+  - Rectangle
+
+- **Smart Integration**:
+  - Option to keep notch expanded while camera is running
+  - Camera automatically stops when view disappears
+  - Separate webcam tab option available
+
+### Settings (v1.5.0)
+
+Comprehensive settings panel to customize your experience:
+
+- **General Settings**:
+
+  - Notch size (Small, Medium, Large)
+  - Notch color selection
+  - Expand sensitivity (Fast, Medium, Slow)
+  - Enable/disable AirDrop
+  - Launch at login
+
+- **Music Control Settings**:
+
+  - Spectrum color customization
+  - Notch border toggle and color
+  - Extend notch when playing option
+
+- **File Shelf Settings**:
+
+  - Open file when has item
+  - Grab bunch option
+
+- **Webcam Settings**:
+  - Enable/disable webcam
+  - Webcam shape selection
+  - Keep notch extended when camera on
+  - Separate webcam tab option
+
 ## 🏗️ Project Structure
 
 ```
 awesome-notch/
 ├── awesome-notch/
 │   ├── awesome_notchApp.swift          # Main app entry point
-│   ├── ContentView.swift                # Main content view
 │   │
 │   ├── components/
 │   │   ├── notch/
-│   │   │   ├── NotchWindowController.swift  # Window management & animations
-│   │   │   ├── NotchView.swift             # Main notch UI component
-│   │   │   └── NotchShape.swift            # Custom notch shape drawing
+│   │   │   ├── manager/
+│   │   │   │   ├── NotchWindowController.swift  # Window management & animations
+│   │   │   │   └── TabManager.swift             # Tab state management
+│   │   │   └── view/
+│   │   │       ├── NotchView.swift              # Main notch UI component
+│   │   │       └── NotchShape.swift             # Custom notch shape drawing
 │   │   │
-│   │   └── mediaContol/
-│   │       ├── MusicManager.swift          # MediaRemote integration & state
-│   │       ├── AudioSpectrum.swift         # Audio visualization component
-│   │       └── PlayingBars.swift           # Alternative playing indicator
-│   │
-│   │   └── fileShelf/
+│   │   ├── mediaContol/
+│   │   │   ├── MusicManager.swift          # MediaRemote integration & state
+│   │   │   └── AudioSpectrum.swift         # Audio visualization component
+│   │   │
+│   │   ├── fileShelf/
+│   │   │   ├── manager/
+│   │   │   │   ├── ShelfManager.swift      # File shelf state management
+│   │   │   │   └── AirDropManager.swift    # AirDrop service integration
+│   │   │   ├── model/
+│   │   │   │   └── ShelfItem.swift         # File item data model
+│   │   │   └── view/
+│   │   │       ├── NotchShelfView.swift    # File shelf UI component
+│   │   │       ├── AirDropZoneView.swift   # AirDrop drop zone UI
+│   │   │       ├── ItemDragView.swift      # Single item drag view
+│   │   │       └── MultiItemDragView.swift # Multiple items drag view
+│   │   │
+│   │   ├── webcame/
+│   │   │   ├── manager/
+│   │   │   │   └── CameraManager.swift     # Camera session management
+│   │   │   └── view/
+│   │   │       ├── NotchCameraView.swift   # Webcam preview component
+│   │   │       └── CameraPreview.swift     # Camera preview layer
+│   │   │
+│   │   └── setting/
+│   │       ├── constraint/
+│   │       │   ├── NotchSize.swift         # Notch size options
+│   │       │   └── WebcameShape.swift      # Webcam shape options
 │   │       ├── manager/
-│   │       │   ├── ShelfManager.swift      # File shelf state management
-│   │       │   └── AirDropManager.swift    # AirDrop service integration
-│   │       ├── model/
-│   │       │   └── ShelfItem.swift         # File item data model
+│   │       │   └── SettingsManager.swift   # App settings management
 │   │       └── view/
-│   │           ├── NotchShelfView.swift     # File shelf UI component
-│   │           └── AirDropZoneView.swift    # AirDrop drop zone UI
+│   │           ├── General.swift           # General settings view
+│   │           ├── Appearance.swift        # Appearance settings view
+│   │           ├── MusicControl.swift      # Music control settings view
+│   │           ├── FileShelf.swift         # File shelf settings view
+│   │           ├── Webcame.swift           # Webcam settings view
+│   │           └── About.swift             # About view
 │   │
 │   ├── view/
 │   │   ├── NotchTabs.swift                 # Tab navigation (Home/File)
 │   │   ├── HomeView.swift                  # Music control interface
 │   │   ├── FileView.swift                  # File management interface
-│   │   └── SettingsView.swift              # Settings panel (placeholder)
+│   │   └── SettingsView.swift              # Settings panel
 │   │
-│   └── utils/
-│       ├── GetNotchDimension.swift         # Notch size detection
-│       └── TrackingView.swift              # Mouse tracking utilities
+│   ├── utils/
+│   │   ├── GetNotchDimension.swift         # Notch size detection
+│   │   ├── TrackingView.swift              # Mouse tracking utilities
+│   │   └── LaunchManager.swift             # Launch at login management
+│   │
+│   └── resource/
+│       └── Assets.xcassets/                # App assets and icons
 │
 └── awesome-notch.xcodeproj/                # Xcode project files
 ```
@@ -151,7 +251,9 @@ awesome-notch/
 - **SwiftUI** for UI components
 - **AppKit** for window management and system integration
 - **MediaRemote Framework** (private) for music control
+- **AVFoundation** for camera/webcam functionality
 - **Combine** for reactive state management
+- **ServiceManagement** for launch at login
 
 ### Key Components
 
@@ -189,6 +291,16 @@ awesome-notch/
    - Handles AirDrop file sharing operations
    - Integrates with macOS NSSharingService
    - Manages file provider handling for AirDrop
+
+6. **CameraManager**:
+   - Manages AVCaptureSession for webcam preview
+   - Handles camera permissions
+   - Provides start/stop session functionality
+
+7. **SettingsManager**:
+   - Singleton that manages all app settings
+   - Uses @AppStorage for persistent storage
+   - Provides computed properties for complex settings
 
 ## 📦 Requirements
 
@@ -241,22 +353,34 @@ open awesome-notch.xcodeproj
 5. **Use AirDrop**: Drop files on the AirDrop zone (left side) to quickly share via AirDrop
 6. **Auto-Switch**: When dragging files near the notch, it automatically switches to the File tab
 
+### Webcam
+
+1. **Enable Webcam**: The webcam appears in the home tab when enabled in settings
+2. **Toggle Camera**: Tap the webcam preview to turn the camera on/off
+3. **Change Shape**: Go to Settings → Webcam to change the preview shape
+4. **Keep Expanded**: Enable "Keep Notch Extended When Camera On" to prevent collapse while camera is active
+
 ### Settings
 
-Access settings by clicking the gear icon in the expanded notch interface. (Settings panel is currently a placeholder for future implementation)
+Access settings by clicking the gear icon in the expanded notch interface:
+
+1. **General**: Configure notch size, color, expand sensitivity, and launch at login
+2. **Music Control**: Customize spectrum colors, notch border, and extend behavior
+3. **File Shelf**: Configure file handling options
+4. **Webcam**: Enable/disable webcam, choose shape, configure expansion behavior
+5. **About**: View app information
 
 ## 🔮 Future Features
 
 The following features are planned for future releases:
 
-- **Mirror Camera**: Open webcam for preview before you video call
 - **Unknow**: Comming soon!
 
 ## 🛠️ Development
 
 ### Current Branch
 
-- **dev/version1.1.0**: Music control feature implementation
+- **feature/setting**: Settings and webcam feature implementation
 
 ### Building from Source
 
@@ -289,4 +413,4 @@ Created by **Y MENGSEA**
 
 ---
 
-**Version 1.2.1** - Music Control Feature and file shelf Release
+**Version 1.5.3** - Music Control, File Shelf, Webcam, Settings & AirDrop Release

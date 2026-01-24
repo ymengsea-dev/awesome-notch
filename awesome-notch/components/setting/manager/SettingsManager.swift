@@ -186,7 +186,7 @@ class SettingsManager: ObservableObject{
         get { WebcameShape(rawValue: webcameShapeRaw) ?? .roundedRectangle }
         set { webcameShapeRaw = newValue.rawValue }
     }
-    @AppStorage("isKeepNotchExtendedWhenCameraOn") var isKeepNotchExtendedWhenCameraOn = false // keep notch extended when camera is on
+    @AppStorage("isKeepNotchExtendedWhenCameraOn") var isKeepNotchExtendedWhenCameraOn = true // keep notch extended when camera is on
     @AppStorage("isEnableWebcameTab") var isEnableWebcameTab = false // seperate webcame another tab
     
 }

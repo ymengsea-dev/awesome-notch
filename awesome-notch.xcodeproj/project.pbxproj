@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FA5455B92F0F968E00531A45 /* awesome-notch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "awesome-notch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA5455B92F0F968E00531A45 /* Awesome Notch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Awesome Notch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9DFEF62F134DBD00CAAC8C /* AudioSpectrum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpectrum.swift; sourceTree = "<group>"; };
 		FA9DFEF72F134DBD00CAAC8C /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
 		FA9DFEFF2F134DBD00CAAC8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		FA5455BA2F0F968E00531A45 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FA5455B92F0F968E00531A45 /* awesome-notch.app */,
+				FA5455B92F0F968E00531A45 /* Awesome Notch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,7 +250,7 @@
 			packageProductDependencies = (
 			);
 			productName = "awesome-notch";
-			productReference = FA5455B92F0F968E00531A45 /* awesome-notch.app */;
+			productReference = FA5455B92F0F968E00531A45 /* Awesome Notch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -474,6 +474,7 @@
 				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "awesome-notch/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Awesome Notch";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera access to show your face in the notch.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -482,9 +483,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.ControlCenter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Awesome Notch";
 				REGISTER_APP_GROUPS = YES;
 				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
 				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
@@ -522,6 +523,7 @@
 				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "awesome-notch/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Awesome Notch";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera access to show your face in the notch.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -530,9 +532,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.ControlCenter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Awesome Notch";
 				REGISTER_APP_GROUPS = YES;
 				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
 				RUNTIME_EXCEPTION_ALLOW_JIT = NO;

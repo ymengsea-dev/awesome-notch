@@ -3,8 +3,9 @@ import SwiftUI
 struct About: View {
     var body: some View {
         VStack(spacing: 20) {
-            Image(systemName: "gear")
+            Image("awesomenotchicon")
                 .resizable()
+                .clipShape(RoundedRectangle(cornerRadius: 16))
                 .frame(width: 100, height: 100)
 
             VStack(spacing: 8) {
@@ -14,7 +15,7 @@ struct About: View {
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
                     
-                Text("Version 1.2.1")
+                Text("Version 1.5.3")
                     .foregroundColor(.secondary)
             }
             Spacer()
