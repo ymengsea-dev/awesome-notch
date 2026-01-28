@@ -146,11 +146,14 @@ final class NotchWindowController {
             self.pendingExpandWorkItem?.cancel()
             let workItem = DispatchWorkItem { [weak self] in
                     guard let self = self else { return }
-                    // Set tab when expanding so shelf tab is correct (e.g. after dragging files out, first hover shows home)
-                    if self.settings.isOpenFileWhenHasItem {
-                        self.tabManager.selectedTab = self.shelfManager.items.isEmpty ? .home : .file
-                    } else {
-                        self.tabManager.selectedTab = .home
+                    // Set tab when expanding so shelf tab is correct (e.g. after dragging files out, first hover shows home).
+                    // Do not override webcame tab — keeps window at 300pt and avoids flick when re-expanding.
+                    if self.tabManager.selectedTab != .webcame {
+                        if self.settings.isOpenFileWhenHasItem {
+                            self.tabManager.selectedTab = self.shelfManager.items.isEmpty ? .home : .file
+                        } else {
+                            self.tabManager.selectedTab = .home
+                        }
                     }
                     self.setExpanded(true)
                     NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: true)
@@ -278,18 +281,15 @@ final class NotchWindowController {
                 if settings.isKeepNotchExtendedWhenCameraOn && isCameraRunning {
                     return
                 }
-                
-                setExpanded(false)
-                // check if there are any item in sheld set tab to file
-                if settings.isOpenFileWhenHasItem {
-                    if shelfManager.items.isEmpty {
-                        tabManager.selectedTab = .home
-                    }else {
-                        tabManager.selectedTab = .file
-                    }
-                }else {
+                if tabManager.selectedTab == .webcame {
+                    tabManager.selectedTab = .home
+                } else if settings.isOpenFileWhenHasItem {
+                    tabManager.selectedTab = shelfManager.items.isEmpty ? .home : .file
+                } else {
                     tabManager.selectedTab = .home
                 }
+
+                setExpanded(false)
                 
                 NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: false)
             }
