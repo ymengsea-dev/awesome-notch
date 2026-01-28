@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Awesome Notch</title>
+        <item>
+            <title>1.6.3</title>
+            <pubDate>Wed, 28 Jan 2026 21:27:33 +0700</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.6.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.6</sparkle:minimumSystemVersion>
+            <enclosure url="https://raw.githubusercontent.com/ymengsea-dev/awesome-notch/main/Awesome%20Notch1.6.3beta1.zip" length="1499248" type="application/octet-stream" sparkle:edSignature="ksuDUEGaVAw3o+9Lgrb+ZpBudYieHW7MrGItGx3O+ygOqQJiF2aNFTobKiQPQHpm/I85hytKLGci5D2yB6DbBg=="/>
+        </item>
+    </channel>
+</rss>
