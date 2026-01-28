@@ -70,7 +70,9 @@ struct NotchCameraView: View {
             }
         }
         .onDisappear {
-            stopCamera()
+            // Avoid mutating @State during a SwiftUI update transaction.
+            // Changing the shape/tab can trigger `onDisappear` while SwiftUI is rendering.
+            stopCamera(updateState: false)
         }
     }
 
@@ -87,10 +89,12 @@ struct NotchCameraView: View {
         }
     }
     
-    func stopCamera() {
+    func stopCamera(updateState: Bool = true) {
         if isCameraRunning {
             camera.stopSession()
-            isCameraRunning = false
+            if updateState {
+                isCameraRunning = false
+            }
             NotificationCenter.default.post(name: NSNotification.Name("CameraStateChanged"), object: false)
         }
     }

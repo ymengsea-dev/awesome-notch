@@ -368,8 +368,21 @@ final class NotchWindowController {
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.2
             window.animator().setFrame(newFrame, display: true)
-        }, completionHandler: {
+        }, completionHandler: { [weak self] in
+            guard let self else { return }
             self.isAnimating = false
+            // Update collapsed notch rect after resize so hover-to-expand works on webcame tab.
+            // (It was only set in createWindow; after resizing height it was wrong.)
+            let collapsedNotchWidth = self.notchSize?.width ?? 180
+            let collapsedNotchHeight = self.notchSize?.height ?? 42
+            let collapsedNotchX = (expandedWidth - collapsedNotchWidth) / 2
+            let collapsedNotchY = expandedHeight - collapsedNotchHeight
+            self.trackingView?.collapsedNotchRect = NSRect(
+                x: collapsedNotchX,
+                y: collapsedNotchY,
+                width: collapsedNotchWidth,
+                height: collapsedNotchHeight
+            )
         })
     }
     

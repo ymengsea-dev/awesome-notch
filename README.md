@@ -68,6 +68,9 @@ To open the app:
    - Visual feedback when files are targeted for AirDrop
    - Auto-switch to File tab when dragging files near the notch
 
+6. **Seperate webcame** - Fully implemented and functional
+   - When switch to webcame the notch extend wide height than normal tab
+
 ### 🔧 Patches (3)
 
 - **Camera bugfix** - Fixed camera session management and state handling
@@ -413,4 +416,4 @@ Created by **Y MENGSEA**
 
 ---
 
-**Version 1.5.3** - Music Control, File Shelf, Webcam, Settings & AirDrop Release
+**Version 1.6.3** - Music Control, File Shelf, Webcam, Settings & AirDrop Release

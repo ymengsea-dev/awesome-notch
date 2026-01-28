@@ -8,6 +8,8 @@ enum Tab {
 
 struct NotchTabs: View {
     @ObservedObject var tabManager = TabManager.share
+    @ObservedObject private var settings = SettingsManager()
+    
     var body: some View {
         NavigationStack{
             HStack{
@@ -43,19 +45,21 @@ struct NotchTabs: View {
                 )
                 HStack{
                     // seperate webcame tab
-                    Button{
-                        tabManager.selectedTab = Tab.webcame
-                    }label: {
-                        Image(systemName: "web.camera")
-                            .foregroundStyle(.white)
-                            .frame(width: 35, height: 20)
-                            .background(
-                                tabManager.selectedTab == .webcame ? .gray
-                                    .opacity(0.5) : .clear
-                            )
-                            .cornerRadius(10)
+                    if settings.isEnableWebcameTab{
+                        Button{
+                            tabManager.selectedTab = Tab.webcame
+                        }label: {
+                            Image(systemName: "web.camera")
+                                .foregroundStyle(.white)
+                                .frame(width: 35, height: 20)
+                                .background(
+                                    tabManager.selectedTab == .webcame ? .gray
+                                        .opacity(0.5) : .clear
+                                )
+                                .cornerRadius(10)
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                     
                     // settings button
                     Button{

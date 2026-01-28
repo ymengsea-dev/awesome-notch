@@ -33,7 +33,11 @@ struct Webcame: View {
                     Picker("", selection: Binding(
                         get: { settings.webcameShape },
                         set: { newValue in
-                            settings.webcameShape = newValue
+                            // Avoid "Publishing changes from within view updates..."
+                            // by deferring the AppStorage write to the next run loop.
+                            DispatchQueue.main.async {
+                                settings.webcameShape = newValue
+                            }
                         }
                     )) {
                         ForEach(WebcameShape.allCases, id: \.self) { shape in
