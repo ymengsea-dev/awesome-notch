@@ -6,17 +6,21 @@
 //
 
 import SwiftUI
+import Sparkle
 
 @main
 struct awesome_notchApp: App {
     init() {
-            DispatchQueue.main.async {
-                NotchWindowController.shared.show()
-            }
+        _ = UpdateManager.shared
+
+        DispatchQueue.main.async {
+            NotchWindowController.shared.show()
         }
+    }
+    
     var body: some Scene {
         Settings {
-            EmptyView()
+            About()
         }
     }
 }

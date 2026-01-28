@@ -1,7 +1,9 @@
 import SwiftUI
+import Sparkle
 
 struct About: View {
     var body: some View {
+        
         VStack(spacing: 20) {
             Image("awesomenotchicon")
                 .resizable()
@@ -19,12 +21,22 @@ struct About: View {
                     .foregroundColor(.secondary)
             }
             Spacer()
-            Button(role: .destructive) {
-                NSApplication.shared.terminate(nil)
-            } label: {
-                Label("Quit App", systemImage: "power")
+            // update button
+            HStack(spacing: 20){
+                Button{
+                    UpdateManager.shared.checkForUpdates()
+                }label: {
+                    Label("Check for Updates", systemImage: "arrow.clockwise")
+                }
+                .buttonStyle(.borderedProminent)
+                
+                Button(role: .destructive) {
+                    NSApplication.shared.terminate(nil)
+                } label: {
+                    Label("Quit App", systemImage: "power")
+                }
+                .buttonStyle(.borderedProminent)
             }
-            .buttonStyle(.borderedProminent)
             Text("© 2025 Y MENGSEA. All rights reserved.")
                 .font(.caption)
                 .foregroundColor(.secondary)
