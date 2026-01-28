@@ -146,6 +146,12 @@ final class NotchWindowController {
             self.pendingExpandWorkItem?.cancel()
             let workItem = DispatchWorkItem { [weak self] in
                     guard let self = self else { return }
+                    // Set tab when expanding so shelf tab is correct (e.g. after dragging files out, first hover shows home)
+                    if self.settings.isOpenFileWhenHasItem {
+                        self.tabManager.selectedTab = self.shelfManager.items.isEmpty ? .home : .file
+                    } else {
+                        self.tabManager.selectedTab = .home
+                    }
                     self.setExpanded(true)
                     NotificationCenter.default.post(name: NSNotification.Name("NotchExpanded"), object: true)
                 }
