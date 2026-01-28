@@ -5,7 +5,14 @@ struct NotchCameraView: View {
     @StateObject var camera = CameraManager()
     @State private var isCameraRunning = false
     @EnvironmentObject var settings: SettingsManager
-    
+    let width: CGFloat?
+    let height: CGFloat?
+
+    private func sanitizedDimension(_ value: CGFloat?) -> CGFloat? {
+        guard let value else { return nil }
+        guard value.isFinite, value >= 0 else { return nil }
+        return value
+    }
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -55,7 +62,8 @@ struct NotchCameraView: View {
                         )
                 }
             }
-            .frame(width: 75, height: 75)
+//            .frame(width: 75, height: 75)
+            .frame(width: sanitizedDimension(width), height: sanitizedDimension(height))
             .shadow(radius: 5)
             .onTapGesture {
                 toggleCamera()

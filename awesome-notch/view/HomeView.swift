@@ -95,7 +95,7 @@ struct HomeView: View {
                 .frame(width: availableWidth * 3 / 4)
                 
                 if settings.isEnableWebcame{
-                    NotchCameraView()
+                    NotchCameraView(width: 75, height: 75)
                         .padding(.bottom)
                         .frame(width: availableWidth * 1 / 4)
                 }else{

@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FA5455B82F0F968E00531A45"
-               BuildableName = "awesome-notch.app"
+               BuildableName = "Awesome Notch.app"
                BlueprintName = "awesome-notch"
                ReferencedContainer = "container:awesome-notch.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA5455B82F0F968E00531A45"
-            BuildableName = "awesome-notch.app"
+            BuildableName = "Awesome Notch.app"
             BlueprintName = "awesome-notch"
             ReferencedContainer = "container:awesome-notch.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA5455B82F0F968E00531A45"
-            BuildableName = "awesome-notch.app"
+            BuildableName = "Awesome Notch.app"
             BlueprintName = "awesome-notch"
             ReferencedContainer = "container:awesome-notch.xcodeproj">
          </BuildableReference>

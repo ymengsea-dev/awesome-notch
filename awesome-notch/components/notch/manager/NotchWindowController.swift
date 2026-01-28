@@ -1,5 +1,6 @@
 import SwiftUI
 import AppKit
+import Combine
 
 final class NotchWindowController {
     
@@ -20,6 +21,23 @@ final class NotchWindowController {
     private let settings = SettingsManager()
     
     private var pendingExpandWorkItem: DispatchWorkItem?
+    private var tabSelectionCancellable: AnyCancellable?
+
+    private init() {
+        // When the user switches tabs, recompute the notch window size.
+        // This is required because expanded height depends on `selectedTab`.
+        tabSelectionCancellable = tabManager.$selectedTab
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.handleSelectedTabChanged()
+            }
+    }
+
+    private func handleSelectedTabChanged() {
+        // Only resize if the notch window is currently expanded and visible.
+        guard window != nil, trackingView?.isExpanded == true else { return }
+        setExpanded(true)
+    }
     
     func show() {
         if window == nil {
@@ -90,7 +108,7 @@ final class NotchWindowController {
         
         let collapsedHeight: CGFloat = (notchSize?.height ?? 42)
         let expandedWidth: CGFloat = settingsWidth // width of notch when it expanded
-        let expandedHeight: CGFloat = 140 // height of notch when it expanded
+        let expandedHeight: CGFloat = tabManager.selectedTab == .webcame ? 300 : 140 // height of notch when it expanded
         
         // Always use expanded size for window frame to prevent mouse tracking issues
         let x = (screenFrame.width - expandedWidth) / 2
@@ -331,7 +349,7 @@ final class NotchWindowController {
         // Add extra height to extend below physical notch for displaying content
         let collapsedHeight = (notchSize?.height ?? 42)
         let expandedWidth = settingsWidth
-        let expandedHeight: CGFloat = 140
+        let expandedHeight: CGFloat = tabManager.selectedTab == .webcame ? 300 : 140
         
         // Window always stays at expanded size, we just animate the visual content
         // This prevents mouse tracking issues

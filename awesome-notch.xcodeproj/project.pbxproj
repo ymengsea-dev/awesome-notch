@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0B9A9F2F29DA5200B7863A /* WebcameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B9A9E2F29DA5100B7863A /* WebcameView.swift */; };
 		FA9DFF112F134DBD00CAAC8C /* awesome_notchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFF092F134DBD00CAAC8C /* awesome_notchApp.swift */; };
 		FA9DFF132F134DBD00CAAC8C /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFEF72F134DBD00CAAC8C /* MusicManager.swift */; };
 		FA9DFF142F134DBD00CAAC8C /* AudioSpectrum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DFEF62F134DBD00CAAC8C /* AudioSpectrum.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA0B9A9E2F29DA5100B7863A /* WebcameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcameView.swift; sourceTree = "<group>"; };
 		FA5455B92F0F968E00531A45 /* Awesome Notch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Awesome Notch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9DFEF62F134DBD00CAAC8C /* AudioSpectrum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpectrum.swift; sourceTree = "<group>"; };
 		FA9DFEF72F134DBD00CAAC8C /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		FA9DFF082F134DBD00CAAC8C /* view */ = {
 			isa = PBXGroup;
 			children = (
+				FA0B9A9E2F29DA5100B7863A /* WebcameView.swift */,
 				FA9DFF042F134DBD00CAAC8C /* FileView.swift */,
 				FA9DFF052F134DBD00CAAC8C /* HomeView.swift */,
 				FA9DFF062F134DBD00CAAC8C /* NotchTabs.swift */,
@@ -310,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0B9A9F2F29DA5200B7863A /* WebcameView.swift in Sources */,
 				FA9DFF462F140CBD00CAAC8C /* ShelfItem.swift in Sources */,
 				FA9DFF472F140CBD00CAAC8C /* ShelfManager.swift in Sources */,
 				FA9DFF112F134DBD00CAAC8C /* awesome_notchApp.swift in Sources */,

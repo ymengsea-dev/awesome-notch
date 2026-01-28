@@ -3,6 +3,7 @@ import SwiftUI
 enum Tab {
     case home
     case file
+    case webcame
 }
 
 struct NotchTabs: View {
@@ -41,6 +42,21 @@ struct NotchTabs: View {
                     alignment: .topLeading
                 )
                 HStack{
+                    // seperate webcame tab
+                    Button{
+                        tabManager.selectedTab = Tab.webcame
+                    }label: {
+                        Image(systemName: "web.camera")
+                            .foregroundStyle(.white)
+                            .frame(width: 35, height: 20)
+                            .background(
+                                tabManager.selectedTab == .webcame ? .gray
+                                    .opacity(0.5) : .clear
+                            )
+                            .cornerRadius(10)
+                    }
+                    .buttonStyle(.plain)
+                    
                     // settings button
                     Button{
                         NotchWindowController.shared.showSettingsWindow()
@@ -62,6 +78,8 @@ struct NotchTabs: View {
                     HomeView()
                 case .file:
                     FileView()
+                case .webcame:
+                    WebcameView()
                 }
             }.padding(.top, 10)
             
